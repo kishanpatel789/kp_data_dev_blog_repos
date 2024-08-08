@@ -10,3 +10,4 @@ Posts and associated code:
 |---|---|
 |[Snowflake with Terraform](https://kpdata.dev/blog/snowflake-with-terraform)|[snowflake_with_terraform](./snowflake_with_terraform)|
 |[Delete Your Old Tweets](https://kpdata.dev/blog/delete-your-old-tweets)|[delete_your_old_tweets](./delete_your_old_tweets)|
+|[Mental Math Drill](https://kpdata.dev/blog/mental-math-drill)|[mental_math_drill](./mental_math_drill)|
