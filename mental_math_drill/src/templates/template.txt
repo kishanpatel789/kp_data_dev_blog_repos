@@ -1,0 +1,15 @@
+{{ greeting }}
+
+CHALLENGES
+
+{% for prob in problems %}
+{{ prob.render() }}
+
+{% endfor %}
+
+
+ANSWERS
+
+{% for prob in problems %}
+{{ loop.index }}: {{ prob.display_answer }}
+{% endfor %}

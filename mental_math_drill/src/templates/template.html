@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            .problem {
+                font-family: 'Courier New', Courier, monospace;
+                text-align: right;
+                margin: 20px auto;
+                width: fit-content;
+            }
+            .number, .operator {
+                display: block;
+                margin: 0;
+                white-space: pre;
+            }
+            .line {
+                border-top: 1px solid #000;
+                margin: 5px 0;
+            }
+            .answer {
+                font-family: 'Courier New', Courier, monospace;
+                text-align: right;
+                margin: 20px auto;
+                width: fit-content;
+            }
+
+        </style>
+    </head>
+    <body>
+        <p>{{ greeting }}</p>
+        <h1>Challenges</h1>
+        {% for prob in problems %}
+        <div class="problem">
+            <span class="number">{{ prob.display_components[0] }}</span>
+            <span class="operator">{{ prob.display_components[1] }}</span>
+            <div class="line"></div>
+        </div>
+        {% endfor %}
+
+        <h2>Answers</h2>
+        {% for prob in problems %}
+        <p class="answer">{{ loop.index }}: {{ prob.display_answer }}</p>
+        {% endfor %}
+
+    </body>
+</html>
