@@ -5,3 +5,5 @@
 venv
 *.zip
 terraform.tfvars
+__pycache__
+logs
