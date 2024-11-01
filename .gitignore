@@ -7,3 +7,4 @@ venv
 terraform.tfvars
 __pycache__
 logs
+.python-version
