@@ -1,8 +1,8 @@
 # KP Data Dev - Blog Repos
 
-All code snippets from 
+This repo houses all code snippets from 
 [blog posts](https://kpdata.dev/blog) 
-found on [kpdata.dev](https:/kpdata.dev).
+found on [kpdata.dev](https://kpdata.dev).
 
 Posts and associated code:
 
