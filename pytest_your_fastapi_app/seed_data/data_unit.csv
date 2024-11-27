@@ -1,0 +1,10 @@
+id,name,name_plural,abbr_singular,abbr_plural
+1,unit,units,,
+2,teaspoon,teaspoons,tsp,tsp
+3,tablespoon,tablespoons,tbsp,tbsp
+4,ounce,ounces,oz,oz
+5,cup,cups,,
+6,pound,pounds,lb,lbs
+7,bunch,bunches,,
+8,dash,dashes,,
+9,leaf,leaves,,

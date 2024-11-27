@@ -1,0 +1,5 @@
+{
+    "db_path": "../recipe.db",
+    "db_path_test": "../recipe_test.db",
+    "db_path_relative": true
+}

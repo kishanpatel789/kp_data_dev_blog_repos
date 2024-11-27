@@ -13,3 +13,4 @@ Posts and associated code:
 |[Mental Math Drill](https://kpdata.dev/blog/mental-math-drill)|[mental_math_drill](./mental_math_drill)|
 |[Airflow Params](https://kpdata.dev/blog/airflow-params)|[airflow_params](./airflow_params)|
 |[Accio Database](https://kpdata.dev/blog/accio-database)|[accio_database](./accio_database)|
+|[Pytest Your Fastapi App](https://kpdata.dev/blog/pytest-your-fastapi-app)|[pytest_your_fastapi_app](./pytest_your_fastapi_app)|

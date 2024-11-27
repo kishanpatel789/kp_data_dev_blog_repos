@@ -8,3 +8,5 @@ terraform.tfvars
 __pycache__
 logs
 .python-version
+.pytest_cache
+*.db

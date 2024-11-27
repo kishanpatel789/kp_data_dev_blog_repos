@@ -1,0 +1,226 @@
+id,direction_id,order_id,quantity,unit_id,item
+1,1,1,2,1,Onion
+2,3,1,1,3,Olive Oil
+3,5,1,3,2,Garlic
+4,5,2,1.5,2,Ginger (minced)
+5,5,3,0.5,2,Cumin
+6,5,4,0.5,2,Tumeric
+7,5,5,2,2,Coriander
+8,5,6,1.5,2,Red Chili Powder
+9,5,7,1.5,2,Salt
+10,5,8,2,2,Garam Masala
+11,7,1,6,4,Tomato Paste
+12,9,1,2,5,Channa (cooked)
+13,9,2,0.25,5,Heavy Whipping Cream
+14,11,1,1.25,5,Brown Sugar
+15,11,2,0.5,5,Butter (room temperature)
+16,11,3,2,1,Egg
+17,11,4,1,2,Vanilla
+18,12,1,2.5,5,All Purpose Flour
+19,12,2,1.5,2,Baking Soda
+20,12,3,0.5,2,Salt
+21,14,1,1.25,5,Semi-Sweet Chocolate Chips
+22,18,1,1.5,5,Yogurt
+23,18,2,0.5,2,Green Chili
+24,18,3,0.75,2,Salt
+25,18,4,1,5,Water
+26,18,5,0.5,2,Cumin
+27,18,6,0.25,2,Garlic
+28,18,7,2,2,Cilantro (chopped)
+29,20,1,2,3,Olive Oil
+30,21,1,0.125,2,Papad Khar
+31,21,2,0.25,2,Asafoetida
+32,22,1,4,5,Giloda (chopped)
+33,24,1,0.75,2,Salt
+34,24,2,0.5,2,Cumin
+35,24,3,2,2,Cumin
+36,24,4,1,2,Garlic (minced)
+37,24,5,0.5,2,Green Chili
+38,26,1,4,3,Cilantro (chopped)
+39,28,1,1,3,Olive Oil
+40,28,2,7,5,Water
+41,28,3,2,2,Salt
+42,29,1,0.5,5,Moong Dal
+43,29,2,0.5,5,Toor Dal
+44,29,3,1.5,5,Rice
+45,30,1,1,5,Vegetables
+46,30,2,1,5,Onion (chopped)
+47,30,3,0.5,5,Potato (chopped)
+48,31,1,1.5,3,Ginger (minced)
+49,31,2,1,3,Garlic (minced)
+50,31,3,1,3,Green Chili
+51,31,4,1.5,2,Cumin Seeds
+52,31,5,0.75,2,Tumeric
+53,34,1,0.125,2,Asafoetida
+54,34,2,1.5,2,Mustard Seeds
+55,35,1,1,3,Olive Oil
+56,35,2,6,9,Limri
+57,37,1,0.25,5,Cilantro (chopped)
+58,38,1,0.5,5,Tahini
+59,38,2,0.33,5,Water
+60,38,3,0.25,5,Lemon Juice
+61,38,4,2,2,Garlic (minced)
+62,38,5,1,3,Olive Oil
+63,38,6,1,3,Red Wine Vinegar
+64,38,7,1,2,Cumin
+65,38,8,1,2,Paprika
+66,38,9,0.25,2,Salt
+67,40,1,8,4,Elbow Pasta
+68,41,1,3,3,Butter
+69,42,1,3,3,Flour
+70,42,2,1,2,Paprika
+71,42,3,0.25,2,Garlic Powder
+72,43,1,2,1,Evaporated Milk (12 oz can)
+73,46,1,2,5,Cheddar Cheese (shredded)
+74,46,2,0.25,5,Parmesan (shredded)
+75,47,1,1,5,Frozen Vegetables
+76,49,1,1,5,Cheddar Cheese (shredded)
+77,51,1,1,3,Olive Oil
+78,51,2,1,1,Onion
+79,51,3,3,2,Garlic (minced)
+80,52,1,0.5,5,Carrot (chopped)
+81,52,2,1,3,Ginger (minced)
+82,54,1,2,2,Curry Powder
+83,54,2,1,2,Tumeric
+84,54,3,1,2,Cumin
+85,54,4,0.5,2,Paprika
+86,54,5,1,2,Garam Masala
+87,54,6,0.5,2,Salt
+88,56,1,2,5,Red Lentils (soaked)
+89,56,2,2,5,Water
+90,56,3,1,2,Veggie Boullion
+91,58,1,1,1,Coconut Milk (13.5 oz can)
+92,61,1,3,5,Oats
+93,61,2,1.5,5,Flour
+94,61,3,0.5,5,Unsweetened Coconut (Shredded or Powder - optional)
+95,61,4,0.25,5,Brown Sugar
+96,61,5,1,2,Cinnamon
+97,61,6,0.5,2,Cardamom
+98,61,7,0.5,2,Salt
+99,61,8,0.5,2,Baking Soda
+100,62,1,0.5,5,Coconut Oil or Light Olive Oil
+101,62,2,0.5,5,Water
+102,70,1,3,5,Flour (All-Purpose or Whole Wheat)
+103,70,2,0.25,2,Instant Yeast
+104,70,3,1.5,2,Salt
+105,71,1,2,3,Honey
+106,71,2,7,4,Water
+107,73,1,3,4,Beer (mild)
+108,73,2,1,3,White Vinegar
+109,84,1,3,3,Lemon Juice
+110,84,2,0.25,5,Water
+111,85,1,6,3,Tahini
+112,85,2,2,3,Olive Oil
+113,86,1,1.5,5,Chana (cooked)
+114,86,2,1,2,Garlic (minced)
+115,86,3,0.5,2,Salt
+116,86,4,0.25,2,Cumin
+117,89,1,0.33,5,White Wine Vinegar
+118,89,2,3,3,Lemon Juice
+119,89,3,1,2,Dijon Mustard
+120,89,4,2,2,Garlic (minced)
+121,89,5,0.5,2,Oregano
+122,89,6,0.25,2,Salt
+123,89,7,0.25,2,Black Pepper
+124,89,8,0.5,5,Olive Oil
+125,91,1,0.5,5,Mayonnaise
+126,91,2,0.5,5,Plain Yogurt
+127,91,3,2,2,Lemon Juice
+128,91,4,1,2,Honey
+129,91,5,2,2,Curry Powder
+130,91,6,0.5,2,Salt
+131,91,7,0.5,2,Black Pepper
+132,92,1,3,5,Chana (cooked)
+133,93,1,0.5,5,Onion (chopped)
+134,93,2,0.5,5,Bell Pepper (chopped)
+135,93,3,0.5,5,Carrot (grated)
+136,93,4,0.25,5,Almonds (chopped)
+137,94,1,1,1,Egg (hardboiled)
+138,99,1,0.33,5,Coconut Oil
+139,99,2,0.25,5,Brown Sugar
+140,99,3,0.25,5,Honey
+141,100,1,2,1,Egg
+142,100,2,2.5,1,Banana (smashed)
+143,100,3,0.25,5,Almond Milk
+144,100,4,1,2,Baking Soda
+145,100,5,1,2,Vanilla
+146,100,6,1.5,2,Cinnamon
+147,100,7,0.75,2,Cardamom
+148,100,8,0.5,2,Salt
+149,102,1,1.75,5,Flour
+150,108,1,1.75,5,Flour
+151,108,2,0.5,5,Oats
+152,108,3,3,3,Brown Sugar
+153,108,4,1,2,Baking Powder
+154,108,5,0.5,2,Baking Soda
+155,108,6,0.25,2,Salt
+156,108,7,1,3,Cinnamon
+157,108,8,1,2,Cardamom
+158,109,1,0.5,5,Butter (cold)
+159,111,1,0.5,5,Buttermilk
+160,111,2,0.5,2,Vanilla
+161,116,1,2,3,Brown Sugar
+162,116,2,1,2,Cinnamon
+163,120,1,1,3,Olive Oil
+164,121,1,2,2,Garlic (minced)
+165,123,1,1,1,Bell Pepper (chopped)
+166,123,2,1,1,Onion (chopped)
+167,125,1,2,1,Black Bean (15 oz can)
+168,125,2,1,5,Corn
+169,125,3,0.5,2,Salt
+170,125,4,0.5,2,Cumin
+171,125,5,0.25,2,Oregano
+172,125,6,0.25,2,Paprika
+173,127,1,0.5,5,Enchilada Sauce
+174,127,2,1,5,Cheese (shredded)
+175,130,1,0.25,5,Enchilada Sauce
+176,131,1,8,1,Tortilla
+177,133,1,0.5,5,Enchilada Sauce
+178,134,1,1,5,Cheese (shredded)
+179,136,1,1,5,Moong
+180,138,1,2,2,Coriander
+181,138,2,0.5,2,Cumin
+182,138,3,0.25,2,Tumeric
+183,138,4,0.5,2,Salt
+184,138,5,0.5,2,Green Chili
+185,138,6,0.5,2,Ginger (minced)
+186,138,7,1,2,Garlic
+187,138,8,3,2,Sugar
+188,138,9,3,2,Lemon Juice
+189,141,1,2,5,Yogurt
+190,141,2,0.5,3,Chaat Masala
+191,141,3,3,3,Sugar
+192,141,4,0.25,2,Salt
+193,143,1,1.5,5,Water
+194,143,2,2,3,Besan
+195,144,1,1,3,Chaat Masala
+196,144,2,1,2,Red Chili Powder
+197,144,3,0.5,2,Salt
+198,144,4,1,2,Crushed Red Pepper
+199,144,5,1,2,Cumin Seeds
+200,144,6,0.5,3,Coriander
+201,147,1,4,3,Tamarind Chutney
+202,147,2,3,5,Chana (boiled)
+203,147,3,0.5,1,Onion (chopped)
+204,147,4,0.5,1,Tomato (chopped)
+205,147,5,2,1,Green Chili
+206,147,6,1,2,Cilantro (chopped)
+207,150,1,0.5,1,Potato (boiled)
+208,153,1,1,5,Bhel Dry Mix
+209,154,1,4,1,Cilantro (chopped)
+210,154,2,0.25,1,Bell Pepper
+211,155,1,1,5,Apple Butter
+212,155,2,1,2,Coriander
+213,155,3,1,2,Cumin
+214,155,4,0.5,2,Chaat Masala
+215,155,5,1,2,Red Chili Powder
+216,155,6,1,3,Lime Juice
+217,155,7,0.25,5,Water
+218,157,1,2,1,Cilantro Bunch
+219,157,2,6,2,Garlic (minced)
+220,157,3,2,2,Ginger (minced)
+221,157,4,3,1,Green Chili
+222,157,5,1,2,Cumin
+223,157,6,1,3,Lime Juice
+224,157,7,3,3,Peanuts
+225,157,8,0.25,2,Salt
