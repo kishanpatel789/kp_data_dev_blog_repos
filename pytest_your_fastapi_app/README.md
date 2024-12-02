@@ -1,4 +1,4 @@
-# Pytest Your Fastapi App
+# Pytest Your FastAPI App
 
 **Objective**: This project implements testing on a Fastapi application. The API provides CRUD operations to a recipe database stored in SQLite. 
 
