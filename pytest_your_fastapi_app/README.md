@@ -8,6 +8,9 @@ Project Start: 2024.11.18
 - This project is an extract from a larger application for managing recipes. It's purpose is to highlight the use of pytest for testing a FastAPI application. 
 - Associated blog post can be found here: https://kpdata.dev/blog/pytest-your-fastapi-app/
 
+## Architecture
+![Project Architecture](./images/ProjectArchitecture.png)
+
 ## Setup Instructions
 - This project can be run locally: 
   - Download or clone the repository to a local computer. 
