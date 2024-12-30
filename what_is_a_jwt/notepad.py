@@ -55,7 +55,7 @@ def base64_urldecode(input_str: str):
     Assumes input is a JSON object.
 
     Args:
-        input (str): Base-64 encoded string
+        input_str (str): Base-64 encoded string
     """
     input_bytes = input_str.encode("utf-8")
 
