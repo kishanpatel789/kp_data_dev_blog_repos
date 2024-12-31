@@ -26,7 +26,7 @@ now = datetime.now(timezone.utc)
 payload = {
     "sub": "harry potter",
     "iat": now,
-    "exp": now + timedelta(hours=2),
+    "exp": now + timedelta(days=2),
     "nbf": now - timedelta(seconds=5),
     "aud": ACCESS_TOKEN_AUD,
 }

@@ -10,3 +10,4 @@ logs
 .python-version
 .pytest_cache
 *.db
+.ipynb_checkpoints
