@@ -2,9 +2,8 @@ from datetime import datetime, timedelta
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from airflow.datasets import Dataset
 
-my_dataset = Dataset("/opt/airflow/my_file.txt")
+from src.datasets import my_dataset
 
 with DAG(
     dag_id="03_DatasetExample_Consumer",

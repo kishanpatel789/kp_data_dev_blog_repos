@@ -2,6 +2,9 @@ from datetime import datetime, timedelta
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
+
+from src.helper import print_context
 
 with DAG(
     dag_id="01_Dag001",
@@ -16,9 +19,9 @@ with DAG(
         bash_command='echo "Begin"',
     )
 
-    t2 = BashOperator(
+    t2 = PythonOperator(
         task_id="t2",
-        bash_command="echo '{{data_interval_start}} {{data_interval_end}}' && echo '{{logical_date}}'",
+        python_callable=print_context,
     )
 
     t3 = BashOperator(
