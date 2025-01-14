@@ -6,28 +6,26 @@ from airflow.operators.bash import BashOperator
 from src.datasets import my_dataset
 
 with DAG(
-    dag_id="02_DatasetExample",
-    schedule=timedelta(minutes=10),
+    dag_id="03b_Dataset_Consumer",
+    schedule=my_dataset,
     start_date=datetime(2025, 1, 1),
     catchup=False,
-    tags=["kp-data-dev"],
+    tags=["dataset"],
 ) as dag:
-    
 
     t1 = BashOperator(
         task_id="t1",
-        bash_command='echo "Begin"',
+        bash_command="echo 'Begin'",
     )
 
     t2 = BashOperator(
         task_id="t2",
-        bash_command="pwd && echo 'Keep it secret' > /opt/airflow/my_file.txt",
-        outlets=[my_dataset],
+        bash_command=f"cat {my_dataset.uri}",
     )
 
     t3 = BashOperator(
         task_id="t3",
-        bash_command='sleep 5 && echo "The End"',
+        bash_command=f"rm {my_dataset.uri} && echo 'The End'",
     )
 
     t1 >> t2 >> t3
