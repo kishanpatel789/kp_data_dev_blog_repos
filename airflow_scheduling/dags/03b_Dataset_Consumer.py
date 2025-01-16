@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from airflow import DAG
+from airflow.operators.empty import EmptyOperator
 from airflow.operators.bash import BashOperator
 
 from src.datasets import my_dataset
@@ -13,19 +14,19 @@ with DAG(
     tags=["dataset"],
 ) as dag:
 
-    t1 = BashOperator(
-        task_id="t1",
-        bash_command="echo 'Begin'",
-    )
+    start = EmptyOperator(task_id="start")
 
-    t2 = BashOperator(
-        task_id="t2",
+    read_dataset = BashOperator(
+        task_id="read_dataset",
         bash_command=f"cat {my_dataset.uri}",
     )
 
-    t3 = BashOperator(
-        task_id="t3",
-        bash_command=f"rm {my_dataset.uri} && echo 'The End'",
+    remove_dataset = BashOperator(
+        task_id="remove_dataset",
+        bash_command="src/remove_file.bash",
+        env={"FILE_PATH": my_dataset.uri},
     )
 
-    t1 >> t2 >> t3
+    end = EmptyOperator(task_id="end")
+
+    start >> read_dataset >> remove_dataset >> end

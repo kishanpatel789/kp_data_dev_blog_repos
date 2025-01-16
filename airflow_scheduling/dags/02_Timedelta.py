@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 from airflow import DAG
-from airflow.operators.bash import BashOperator
+from airflow.operators.empty import EmptyOperator
 from airflow.operators.python import PythonOperator
 
 from src.helper import print_context
@@ -14,22 +14,16 @@ with DAG(
     tags=["timedelta"],
 ) as dag:
 
-    t1 = BashOperator(
-        task_id="t1",
-        bash_command='echo "Begin"',
-    )
+    start = EmptyOperator(task_id="start")
 
-    t2 = PythonOperator(
-        task_id="t2",
+    print_context_py = PythonOperator(
+        task_id="print_context_py",
         python_callable=print_context,
     )
 
-    t3 = BashOperator(
-        task_id="t3",
-        bash_command='echo "The End"',
-    )
+    end = EmptyOperator(task_id="end")
 
-    t1 >> t2 >> t3
+    start >> print_context_py >> end
 
 with DAG(
     dag_id="02b_Timedelta_Frequency",
@@ -39,19 +33,13 @@ with DAG(
     tags=["timedelta"],
 ) as dag:
 
-    t1 = BashOperator(
-        task_id="t1",
-        bash_command='echo "Begin"',
-    )
+    start = EmptyOperator(task_id="start")
 
-    t2 = PythonOperator(
-        task_id="t2",
+    print_context_py = PythonOperator(
+        task_id="print_context_py",
         python_callable=print_context,
     )
 
-    t3 = BashOperator(
-        task_id="t3",
-        bash_command='echo "The End"',
-    )
+    end = EmptyOperator(task_id="end")
 
-    t1 >> t2 >> t3
+    start >> print_context_py >> end
