@@ -8,8 +8,8 @@ from src.datasets import my_dataset
 
 with DAG(
     dag_id="03b_Dataset_Consumer",
-    schedule=my_dataset,
     start_date=datetime(2025, 1, 1),
+    schedule=my_dataset,
     catchup=False,
     tags=["dataset"],
 ) as dag:

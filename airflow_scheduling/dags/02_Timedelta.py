@@ -8,8 +8,8 @@ from src.helper import print_context
 
 with DAG(
     dag_id="02a_Timedelta",
-    schedule=timedelta(minutes=10),
     start_date=datetime(2025, 1, 1),
+    schedule=timedelta(minutes=10),
     catchup=False,
     tags=["timedelta"],
 ) as dag:
@@ -27,8 +27,8 @@ with DAG(
 
 with DAG(
     dag_id="02b_Timedelta_Frequency",
-    schedule=timedelta(days=4),
     start_date=datetime(2025, 1, 1),
+    schedule=timedelta(days=4),
     catchup=False,
     tags=["timedelta"],
 ) as dag:
