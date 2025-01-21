@@ -12,7 +12,7 @@ with DAG(
     schedule=timedelta(minutes=10),
     catchup=False,
     tags=["timedelta"],
-) as dag:
+):
 
     start = EmptyOperator(task_id="start")
 
@@ -31,7 +31,7 @@ with DAG(
     schedule=timedelta(days=4),
     catchup=False,
     tags=["timedelta"],
-) as dag:
+):
 
     start = EmptyOperator(task_id="start")
 

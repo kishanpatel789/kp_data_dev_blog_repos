@@ -12,7 +12,7 @@ with DAG(
     schedule="45 15 * * 4",
     catchup=False,
     tags=["dataset"],
-) as dag:
+):
 
     start = EmptyOperator(task_id="start")
 

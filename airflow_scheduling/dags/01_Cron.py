@@ -13,7 +13,7 @@ with DAG(
     schedule="30 5 * * *",
     catchup=False,
     tags=["cron"],
-) as dag:
+):
 
     start = EmptyOperator(task_id="start")
 
@@ -33,7 +33,7 @@ with DAG(
     schedule="@daily",
     catchup=False,
     tags=["cron"],
-) as dag:
+):
 
     start = EmptyOperator(task_id="start")
 
@@ -54,7 +54,7 @@ with DAG(
     schedule="0 13 * * 5#2",
     catchup=False,
     tags=["cron"],
-) as dag:
+):
 
     start = EmptyOperator(task_id="start")
 
@@ -74,7 +74,7 @@ with DAG(
     schedule="*/10 * * * *",
     catchup=False,
     tags=["cron"],
-) as dag:
+):
 
     start = EmptyOperator(task_id="start")
 

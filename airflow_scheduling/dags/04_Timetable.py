@@ -32,7 +32,7 @@ with DAG(
     schedule=my_events,
     catchup=False,
     tags=["timetable"],
-) as dag:
+):
 
     start = EmptyOperator(task_id="start")
 
