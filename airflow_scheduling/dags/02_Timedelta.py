@@ -7,7 +7,7 @@ from airflow.operators.python import PythonOperator
 from src.helper import print_context
 
 with DAG(
-    dag_id="02a_Timedelta",
+    dag_id="02a_Timedelta_10Min",
     start_date=datetime(2025, 1, 1),
     schedule=timedelta(minutes=10),
     catchup=False,
@@ -26,7 +26,7 @@ with DAG(
     start >> print_context_py >> end
 
 with DAG(
-    dag_id="02b_Timedelta_Frequency",
+    dag_id="02b_Timedelta_4Days",
     start_date=datetime(2025, 1, 1),
     schedule=timedelta(days=4),
     catchup=False,

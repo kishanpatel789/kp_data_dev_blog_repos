@@ -10,7 +10,7 @@ from src.helper import print_context
 
 my_events = EventsTimetable(
     event_dates=[
-        pendulum.datetime(2025, 1, 1), # MLK Jr Day
+        pendulum.datetime(2025, 1, 1), # New Years Day
         pendulum.datetime(2025, 1, 20), # MLK Jr Day
         pendulum.datetime(2025, 2, 17), # Presidents' Day
         pendulum.datetime(2025, 5, 26), # Memorial Day
