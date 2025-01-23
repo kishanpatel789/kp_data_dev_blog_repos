@@ -23,7 +23,7 @@ Project Start: 2025.01.13
     echo -e "AIRFLOW_UID=$(id -u)" > .env    
     ```
     - Docker will automatically pick up this `.env` file when building Airflow resources. 
-  - Run the Airflow containers by executing following two commands in a terminal when in the directory `./airflow/`:
+  - Run the Airflow containers by executing following two commands in a terminal when in the directory `./airflow_scheduling/`:
     ```bash
     docker compose up airflow-init
     docker compose up
