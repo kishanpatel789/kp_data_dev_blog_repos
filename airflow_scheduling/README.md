@@ -40,11 +40,13 @@ Project Start: 2025.01.13
     - `01c_Cron_DayOfWeekHash`: Extended cron expression with day-of-week hash
     - `01d_Cron_StepValues`: Extended cron expression with step values
   - `02_Timedelta.py`
-    - `02a_Timedelta_10Min`: Frequency-based schedule for every 10 minutes; can be replicated in cron
-    - `02b_Timedelta_4Days`: Frequency-based schedule for every 4 days; cannot be replicated in cron
+    - `02a_Timedelta_10Min`: Timedelta object for every 10 minutes; can be replicated in cron
+    - `02b_Timedelta_4Days`: Timedelta object for every 4 days; cannot be replicated in cron
   - `03a_Dataset_Producer.py`
-    - `03a_Dataset_Producer`: Produces a Dataset later consumed by DAG `03b_Dataset_Consumer`
+    - `03a_Dataset_Producer`: Standard cron expression; produces a Dataset later consumed by DAG `03b_Dataset_Consumer`
   - `03b_Dataset_Consumer.py`
-    - `03b_Dataset_Consumer`: Triggered when Dataset is updated
+    - `03b_Dataset_Consumer`: Dataset object updated by DAG `03a_Dataset_Producer`
   - `04_Timetable.py`
-    - `04_TimetableEvents`: Uses EventsTimetable for custom execution dates
+    - `04_TimetableEvents`: EventsTimetable object with custom execution dates
+
+![Dag list](./images/DAGList.jpeg)
