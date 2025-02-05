@@ -12,3 +12,4 @@ logs
 *.db
 .ipynb_checkpoints
 scratch.txt
+*.swp
