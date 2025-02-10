@@ -1,12 +1,10 @@
 from datetime import datetime, date, timedelta, timezone
-from pprint import pprint
 import logging
 
 from faker import Faker
-from flask import Flask, jsonify
+from flask import Flask, request
 import polars as pl
 
-app = Flask(__name__)
 fake = Faker()
 
 
@@ -14,21 +12,20 @@ def get_orders_for_day(day: date):
 
     next_day = day + timedelta(days=1)
     orders = []
-    # for _ in range(fake.random_int(10, 12)):
-    for _ in range(1):
+    for _ in range(fake.random_int(1, 100)):
         order = (
             fake.user_name(),
-            fake.random_int(1, 100),
+            fake.random_int(1, 50) * 6,
             fake.date_time_between_dates(
                 day,
                 next_day,
                 timezone.utc,
-            ).isoformat(),
+            ),
         )
         orders.append(order)
 
     df = pl.from_records(
-        orders, schema=["user_name", "num_donuts", "datetime"], orient="row"
+        orders, schema=["user_name", "num_donuts", "order_time"], orient="row"
     )
 
     return df
@@ -41,20 +38,37 @@ def get_orders_for_last_14_days(dt: date):
     return multi_day_orders
 
 
-@app.route("/<date_str>")
-def get_orders(date_str):
+app = Flask(__name__)
+app.config["orders"] = get_orders_for_last_14_days(date.today())
+
+
+def parse_date_str(date_str):
+    if date_str is None:
+        return None
+
     try:
         dt = datetime.strptime(date_str, "%Y-%m-%d").date()
     except ValueError:
-        logging.error(f"You don goofed")
+        logging.error(f"Improper date provided")
         raise
+    return dt
 
-    # orders = get_orders_for_day(dt)
-    orders = get_orders_for_last_14_days(dt)
 
-    return jsonify(orders.to_dicts())
+@app.route("/orders")
+def get_orders():
+    start_date = parse_date_str(request.args.get("start_date", None))
+    end_date = parse_date_str(request.args.get("end_date", None))
+
+    orders = app.config["orders"]
+
+    if start_date is not None:
+        orders = orders.filter(pl.col("order_time") >= start_date)
+
+    if end_date is not None:
+        orders = orders.filter(pl.col("order_time") < end_date)
+
+    return orders.to_dicts()
 
 
 if __name__ == "__main__":
-    # pprint(get_orders_for_day(date.today()))
-    app.run(debug=True)
+    app.run(debug=True, port=5000)

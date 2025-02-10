@@ -13,3 +13,4 @@ logs
 .ipynb_checkpoints
 scratch.txt
 *.swp
+data/
