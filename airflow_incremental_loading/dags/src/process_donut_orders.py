@@ -1,7 +1,7 @@
 def calculate_hourly_stats(templates_dict):
     from pathlib import Path
     import polars as pl
-    
+
     dir_data = Path("./data")
     dir_input = dir_data / "orders"
     dir_output = dir_data / "hourly_summary"
@@ -22,6 +22,12 @@ def calculate_hourly_stats(templates_dict):
     )
 
     # calculate hourly summary
+    df_out = (
+        df.with_columns(date_hour=df["order_time"].dt.truncate("1h"))
+        .group_by("date_hour")
+        .agg(pl.col("num_donuts").sum())
+        .sort("date_hour")
+    )
 
     # write as csv
-    df.write_csv(dir_output / f"{file_name}.csv")
+    df_out.write_csv(dir_output / f"{file_name}.csv")

@@ -19,9 +19,9 @@ with DAG(
         bash_command=(
             "mkdir -p $AIRFLOW_HOME/data/orders && "
             "curl -o $AIRFLOW_HOME/data/orders/{{ data_interval_start | ds }}.json "
-            "http://orders_api:5000/orders?"
+            "'http://orders_api:5000/orders?"
             "start_date={{data_interval_start | ds}}&"
-            "end_date={{data_interval_end | ds}}"
+            "end_date={{data_interval_end | ds}}'"
         ),
     )
 
