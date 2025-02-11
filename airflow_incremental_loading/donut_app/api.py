@@ -7,6 +7,12 @@ import polars as pl
 
 fake = Faker()
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="{asctime} - {levelname} - {message}",
+    style="{",
+)
+
 
 def get_orders_for_day(day: date):
 
@@ -62,9 +68,11 @@ def get_orders():
     orders = app.config["orders"]
 
     if start_date is not None:
+        logging.debug(f"Filtering orders by start_date '{start_date}'")
         orders = orders.filter(pl.col("order_time") >= start_date)
 
     if end_date is not None:
+        logging.debug(f"Filtering orders by end_date '{end_date}'")
         orders = orders.filter(pl.col("order_time") < end_date)
 
     return orders.to_dicts()
