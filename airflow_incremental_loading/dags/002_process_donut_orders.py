@@ -12,16 +12,17 @@ with DAG(
     start_date=datetime(2025, 2, 1),
     schedule="@daily",
     max_active_runs=4,
+    catchup=True,
 ):
 
     get_orders = BashOperator(
         task_id="get_orders",
         bash_command=(
             "mkdir -p $AIRFLOW_HOME/data/orders && "
-            "curl -o $AIRFLOW_HOME/data/orders/{{ data_interval_start | ds }}.json "
+            "curl -sSo $AIRFLOW_HOME/data/orders/{{ data_interval_start | ds }}.json "
             "'http://orders_api:5000/orders?"
-            "start_date={{data_interval_start | ds}}&"
-            "end_date={{data_interval_end | ds}}'"
+            "start_date={{ data_interval_start | ds }}&"
+            "end_date={{ data_interval_end | ds }}'"
         ),
     )
 
