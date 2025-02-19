@@ -47,11 +47,11 @@ def get_orders_for_last_14_days(dt: date):
 
 description = """
 ## Donut Order API \U0001f369 \U0001f924
-- `/orders`: allows you to get orders from last 14 days
+- `/orders`: get orders from last 14 days
 """
 app = FastAPI(
     title="Donut App",
-    summary="A delicious API that allows you to order donuts.",
+    summary="A delicious API that shows orders made to the best donut app ever.",
     description=description,
     version="0.0.1",
 )
