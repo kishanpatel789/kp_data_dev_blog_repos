@@ -5,9 +5,13 @@ def calculate_hourly_stats(templates_dict):
     import polars as pl
 
     logger = logging.getLogger("airflow.task")
-    dir_data = Path("./data")
-    path_input = dir_data / "orders" / f"{templates_dict['file_name']}.json"
-    path_output = dir_data / "hourly_summary" / f"{templates_dict['file_name']}.csv"
+    dir_input = Path("./data/orders")
+    dir_output = Path("./data/hourly_summary")
+    if not dir_output.exists():
+        dir_output.mkdir()
+
+    path_input = dir_input / f"{templates_dict['file_name']}.json"
+    path_output = dir_output / f"{templates_dict['file_name']}.csv"
 
     # read json
     logger.info(f"Reading file '{path_input}'...")
@@ -15,12 +19,9 @@ def calculate_hourly_stats(templates_dict):
         path_input,
         schema={
             "num_donuts": pl.Int32,
-            "order_time": pl.String,
+            "order_time": pl.Datetime,
             "user_name": pl.String,
         },
-    )
-    df = df.with_columns(
-        order_time=df["order_time"].str.to_datetime("%a, %d %b %Y %H:%M:%S %Z")
     )
     logger.info(f"    Read {df.height:,} rows from .json file")
 

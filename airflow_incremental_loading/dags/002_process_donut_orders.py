@@ -1,4 +1,5 @@
 from datetime import datetime
+from pathlib import Path
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
@@ -20,7 +21,7 @@ with DAG(
         bash_command=(
             "mkdir -p $AIRFLOW_HOME/data/orders && "
             "curl -sSo $AIRFLOW_HOME/data/orders/{{ data_interval_start | ds }}.json "
-            "'http://orders_api:5000/orders?"
+            "'http://orders_api:8000/orders?"
             "start_date={{ data_interval_start | ds }}&"
             "end_date={{ data_interval_end | ds }}'"
         ),
@@ -32,6 +33,7 @@ with DAG(
         requirements=["polars==1.21.0"],
         system_site_packages=True,
         templates_dict={"file_name": "{{ data_interval_start | ds }}"},
+        venv_cache_path=Path("/home/airflow/venv-cache"),
     )
 
     get_orders >> process_orders
