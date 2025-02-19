@@ -3,6 +3,7 @@ import logging
 
 from faker import Faker
 from fastapi import FastAPI
+from pydantic import BaseModel
 import polars as pl
 
 fake = Faker()
@@ -44,39 +45,40 @@ def get_orders_for_last_14_days(dt: date):
     return multi_day_orders
 
 
-app = FastAPI()
+description = """
+## Donut Order API \U0001f369 \U0001f924
+- `/orders`: allows you to get orders from last 14 days
+"""
+app = FastAPI(
+    title="Donut App",
+    summary="A delicious API that allows you to order donuts.",
+    description=description,
+    version="0.0.1",
+)
 app.state.orders = get_orders_for_last_14_days(date.today())
 
 
-def parse_date_str(date_str: str | None) -> date | None:
-    if date_str is None:
-        return None
-
-    try:
-        dt = datetime.strptime(date_str, "%Y-%m-%d").date()
-    except ValueError:
-        logging.error(f"Improper date provided")
-        raise
-    return dt
+class Order(BaseModel):
+    user_name: str
+    num_donuts: int
+    order_time: datetime
 
 
-@app.get("/orders")
-def get_orders(start_date: str | None = None, end_date: str | None = None):
-    start_dt = parse_date_str(start_date)
-    end_dt = parse_date_str(end_date)
+@app.get("/", tags=["root"], include_in_schema=False)
+def health_check():
+    return {"status": "ok"}
 
+
+@app.get("/orders", response_model=list[Order], tags=["orders"])
+def get_orders(start_date: date | None = None, end_date: date | None = None):
     orders = app.state.orders
 
-    if start_dt is not None:
-        logging.debug(f"Filtering orders by start_date '{start_dt}'")
-        orders = orders.filter(pl.col("order_time") >= start_dt)
+    if start_date is not None:
+        logging.debug(f"Filtering orders by start_date '{start_date}'")
+        orders = orders.filter(pl.col("order_time") >= start_date)
 
-    if end_dt is not None:
-        logging.debug(f"Filtering orders by end_date '{end_dt}'")
-        orders = orders.filter(pl.col("order_time") < end_dt)
+    if end_date is not None:
+        logging.debug(f"Filtering orders by end_date '{end_date}'")
+        orders = orders.filter(pl.col("order_time") < end_date)
 
     return orders.to_dicts()
-
-
-# if __name__ == "__main__":
-#     app.run(debug=True, host="0.0.0.0", port=5000)
