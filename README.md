@@ -16,3 +16,4 @@ Posts and associated code:
 |[Pytest Your Fastapi App](https://kpdata.dev/blog/pytest-your-fastapi-app)|[pytest_your_fastapi_app](./pytest_your_fastapi_app)|
 |[What is a JWT?](https://kpdata.dev/blog/what-is-a-jwt)|[what_is_a_jwt](./what_is_a_jwt)|
 |[Airflow Scheduling](https://kpdata.dev/blog/airflow-scheduling)|[airflow_scheduling](./airflow_scheduling)|
+|[Airflow Incremental Loading](https://kpdata.dev/blog/airflow-incremental-loading)|[airflow_incremental_loading](./airflow_incremental_loading)|
