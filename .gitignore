@@ -14,3 +14,5 @@ logs
 scratch.txt
 *.swp
 data/
+node_modules/
+

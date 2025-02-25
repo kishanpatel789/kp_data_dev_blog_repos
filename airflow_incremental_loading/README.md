@@ -43,5 +43,5 @@ Project Start: 2025.02.05
     1. `get_orders`: Pull orders from the API and save them locally as a JSON file. 
     2. `process_orders`: Read saved JSON orders, aggregate them to a hourly summary, and save locally as a CSV file. 
 - The Donut App API documentation can be found at `localhost:8000/docs`. 
-  ![Donut Order API](./images/DonutOrderAPI.jpeg)
+  ![Donut Order API](./presentation/images/DonutOrderAPI.jpeg)
   

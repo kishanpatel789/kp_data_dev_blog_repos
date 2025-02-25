@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Airflow Incremental Loading</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/kpdatadev.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/default.css" />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown># Airflow Incremental Loading</section>
+
+        <section>
+          <h2>What is Incremental Loading?</h2>
+        </section>
+
+        <section>
+          <section>
+            <h2>Airflow Data Interval</h2>
+          </section>
+          <section>
+            <h2>Template Variables</h2>
+            <ul class="fragment">
+              <li><code>data_interval_start</code></li>
+              <li><code>data_interval_end</code></li>
+            </ul>
+          </section>
+          <section>
+            <img src="images/DataIntervals.jpeg" alt="Data intervals" />
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Donut Order DAG</h2>
+          </section>
+          <section>
+            <img src="images/DonutOrderAPI.jpeg" alt="API Swagger" />
+          </section>
+          <section>
+            <img src="images/DAGDesign.jpeg" alt="DAG design" />
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Integrating template variables into logic</h3>
+          </section>
+          <section>
+            <pre><code data-trim data-noescape data-line-numbers="1-18|19-28|25-26|23|30-37|35|39" class="language-python">
+from datetime import datetime
+from pathlib import Path
+
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonVirtualenvOperator
+
+from src.process_donut_orders import calculate_hourly_stats
+
+
+with DAG(
+    dag_id="002_process_donut_orders",
+    start_date=datetime(2025, 2, 1),
+    schedule="@daily",
+    max_active_runs=4,
+    catchup=True,
+):
+
+    get_orders = BashOperator(
+        task_id="get_orders",
+        bash_command=(
+            "mkdir -p $AIRFLOW_HOME/data/orders && "
+            "curl -sSo $AIRFLOW_HOME/data/orders/{{ data_interval_start | ds }}.json "
+            "'http://orders_api:8000/orders?"
+            "start_date={{ data_interval_start | ds }}&"
+            "end_date={{ data_interval_end | ds }}'"
+        ),
+    )
+
+    process_orders = PythonVirtualenvOperator(
+        task_id="process_orders",
+        python_callable=calculate_hourly_stats,
+        requirements=["polars==1.21.0"],
+        system_site_packages=True,
+        templates_dict={"file_name": "{{ data_interval_start | ds }}"},
+        venv_cache_path=Path("/home/airflow/venv-cache"),
+    )
+
+    get_orders >> process_orders
+                    </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section><h2>How to Re-Run a DAG</h2></section>
+        </section>
+
+        <section>
+          <section data-background-color="#293c47">
+            <h1>KP Data Dev</h1>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        progress: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
