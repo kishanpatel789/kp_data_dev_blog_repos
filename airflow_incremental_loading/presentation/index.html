@@ -15,6 +15,12 @@
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/default.css" />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://kpdata.dev/theme/svg/Favicon.svg"
+    />
   </head>
 
   <body>
@@ -31,6 +37,19 @@
         <section>
           <section>
             <h2>Airflow Data Interval</h2>
+          </section>
+          <section>
+            <pre><code data-trim data-noescape data-line-numbers="|5-6" class="language-python">
+# ...
+
+with DAG(
+    dag_id="my_amazing_dag",
+    start_date=datetime(2025, 2, 1),
+    schedule="@daily",
+):
+
+    # do stuff
+                    </code></pre>
           </section>
           <section>
             <h2>Template Variables</h2>
@@ -54,14 +73,40 @@
           <section>
             <img src="images/DAGDesign.jpeg" alt="DAG design" />
           </section>
+          <section>
+            <h3>Key Decision</h3>
+            <p>Do NOT grab all orders each time</p>
+          </section>
         </section>
 
         <section>
           <section>
             <h3>Using Template Variables in the DAG</h3>
           </section>
-          <section>
-            <pre><code data-trim data-noescape data-line-numbers="1-14|16-24|20-22|19|26-32|31|34" class="language-python">
+          <section data-auto-animate>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-python">
+# ...
+
+with DAG(
+    dag_id="002_process_donut_orders",
+    start_date=datetime(2025, 2, 1),
+    schedule="@daily",
+):
+
+    get_orders = ...
+
+    process_orders = ...
+
+    get_orders >> process_orders
+                    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers="|1-7|16-24|20-22|19|16-24|26-31|30|33|" class="language-python">
 from datetime import datetime
 
 from airflow import DAG
@@ -91,12 +136,14 @@ with DAG(
         task_id="process_orders",
         python_callable=calculate_hourly_stats,
         requirements=["polars==1.21.0"],
-        system_site_packages=True,
         templates_dict={"file_name": "{{ data_interval_start | ds }}"},
     )
 
     get_orders >> process_orders
                     </code></pre>
+          </section>
+          <section>
+            <h3>How Is This Rendered?</h3>
           </section>
         </section>
 
@@ -104,29 +151,34 @@ with DAG(
           <section><h2>How to Re-Run a DAG</h2></section>
         </section>
 
-          <section
-            data-background-color="#293c47"
-            style="text-align: left"
-          >
-            <div style="margin-bottom: 3em;">
-              <p>Ask me questions about:<br />Data engineering, <strong>learning Python</strong>, anything else</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <p>
-                <strong>Kishan Patel</strong><br />
-                <small
-                  >Data Engineering Trainer<br />
-                  <strong>info@kpdata.dev</strong></small
-                >
-              </p>
-              <img
-                src="images/LightLogo.svg"
-                alt="KP Data Dev logo"
-                style="height: 100px"
-              />
-            </div>
+        <section data-background-color="#293c47" style="text-align: left">
+          <div style="margin-bottom: 3em">
+            <p>
+              Ask me questions about:<br />Data engineering,
+              <strong>learning Python</strong>, anything else
+            </p>
           </div>
-          </section>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <p>
+              <strong>Kishan Patel</strong><br />
+              <small
+                >Data Engineering Trainer<br />
+                <strong>info@kpdata.dev</strong></small
+              >
+            </p>
+            <img
+              src="images/LightLogo.svg"
+              alt="KP Data Dev logo"
+              style="height: 100px"
+            />
+          </div>
+        </section>
       </div>
     </div>
 
