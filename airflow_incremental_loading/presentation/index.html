@@ -20,7 +20,9 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-markdown># Airflow Incremental Loading</section>
+        <section>
+          <h1>Airflow<br />Incremental<br />Loading</h1>
+        </section>
 
         <section>
           <h2>What is Incremental Loading?</h2>
@@ -56,12 +58,11 @@
 
         <section>
           <section>
-            <h3>Integrating template variables into logic</h3>
+            <h3>Using Template Variables in the DAG</h3>
           </section>
           <section>
-            <pre><code data-trim data-noescape data-line-numbers="1-18|19-28|25-26|23|30-37|35|39" class="language-python">
+            <pre><code data-trim data-noescape data-line-numbers="1-14|16-24|20-22|19|26-32|31|34" class="language-python">
 from datetime import datetime
-from pathlib import Path
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
@@ -74,14 +75,11 @@ with DAG(
     dag_id="002_process_donut_orders",
     start_date=datetime(2025, 2, 1),
     schedule="@daily",
-    max_active_runs=4,
-    catchup=True,
 ):
 
     get_orders = BashOperator(
         task_id="get_orders",
         bash_command=(
-            "mkdir -p $AIRFLOW_HOME/data/orders && "
             "curl -sSo $AIRFLOW_HOME/data/orders/{{ data_interval_start | ds }}.json "
             "'http://orders_api:8000/orders?"
             "start_date={{ data_interval_start | ds }}&"
@@ -95,7 +93,6 @@ with DAG(
         requirements=["polars==1.21.0"],
         system_site_packages=True,
         templates_dict={"file_name": "{{ data_interval_start | ds }}"},
-        venv_cache_path=Path("/home/airflow/venv-cache"),
     )
 
     get_orders >> process_orders
@@ -107,11 +104,29 @@ with DAG(
           <section><h2>How to Re-Run a DAG</h2></section>
         </section>
 
-        <section>
-          <section data-background-color="#293c47">
-            <h1>KP Data Dev</h1>
+          <section
+            data-background-color="#293c47"
+            style="text-align: left"
+          >
+            <div style="margin-bottom: 3em;">
+              <p>Ask me questions about:<br />Data engineering, <strong>learning Python</strong>, anything else</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <p>
+                <strong>Kishan Patel</strong><br />
+                <small
+                  >Data Engineering Trainer<br />
+                  <strong>info@kpdata.dev</strong></small
+                >
+              </p>
+              <img
+                src="images/LightLogo.svg"
+                alt="KP Data Dev logo"
+                style="height: 100px"
+              />
+            </div>
+          </div>
           </section>
-        </section>
       </div>
     </div>
 
