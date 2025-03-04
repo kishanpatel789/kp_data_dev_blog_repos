@@ -1,0 +1,18 @@
+001_dag_factory:
+  default_args:
+    start_date: 2024-03-01
+  schedule_interval: '30 5 * * *'
+  catchup: False
+  concurrency: 1
+  max_active_runs: 1
+  tasks:
+    start:
+      operator: airflow.operators.empty.EmptyOperator
+    print_context_py:
+      operator: airflow.operators.python.PythonOperator
+      python_callable_name: print_context
+      python_callable_file: /opt/airflow/dags/src/helper.py
+      dependencies: [start]
+    task_3:
+      operator: airflow.operators.empty.EmptyOperator
+      dependencies: [print_context_py]
