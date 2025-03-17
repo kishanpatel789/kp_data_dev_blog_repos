@@ -1,0 +1,21 @@
+  weather: &weatherconfig
+    lat: 38.89783
+    lon: -77.03650
+    api_key: ssshhh-my-api-key-ap2394789d
+    units: metric
+    num_days: 1
+    base_url: "https://api.openweathermap.org/data/2.5"
+    cache_file_relative: true
+    cache_file: ./cache/weather.json
+    cache_ttl: 900 #15 minutes (900 seconds)
+  events:
+    <<: *weatherconfig
+    key_file_relative: true
+    key_file: ./cache/credentials.json
+    timezone: "America/New_York"
+    google_maps_base_url: "https://www.google.com/maps/dir"
+    google_maps_api_version: 1
+    direction_origin: "1600 Pennsylvania Avenue NW, Washington, DC 20500"
+    cache_file_relative: true
+    cache_file: "./cache/events.json"
+    cache_ttl: 900 #15 minutes (900 seconds) 
