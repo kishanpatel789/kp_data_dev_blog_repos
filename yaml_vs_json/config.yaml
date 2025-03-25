@@ -8,6 +8,21 @@
     cache_file_relative: true
     cache_file: ./cache/weather.json
     cache_ttl: 900 #15 minutes (900 seconds)
+    long_text: >- 
+      This should be broken
+      into multiple lines
+      for better readability
+      
+
+    long_text_2: |
+      This should be broken
+      into multiple lines
+      for better readability
+
+    escape_sequence: "This is a backslash: \\"
+    escape_sequence_2: 'This is a backslash: \\'
+    escape_sequence_3: This is a backslash \\
+
   events:
     <<: *weatherconfig
     key_file_relative: true
@@ -17,5 +32,5 @@
     google_maps_api_version: 1
     direction_origin: "1600 Pennsylvania Avenue NW, Washington, DC 20500"
     cache_file_relative: true
-    cache_file: "./cache/events.json"
+    cache_file: null
     cache_ttl: 900 #15 minutes (900 seconds) 
