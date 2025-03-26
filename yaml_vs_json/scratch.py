@@ -11,3 +11,5 @@ with open("./config.yaml", "r") as f:
 with open("./config2.yaml", "r") as f:
     config2_yaml = yaml.safe_load(f)
 # %%
+with open("./config3.yaml", "r") as f:
+    config3_yaml = yaml.safe_load(f)

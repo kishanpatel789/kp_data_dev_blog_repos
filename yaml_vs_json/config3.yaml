@@ -1,0 +1,27 @@
+services:
+  api:
+    host: "0.0.0.0"
+    port: 8080
+    logging: &default_logging # define node as anchor
+      level: info
+      format: json
+      output: logs/app.log
+  worker:
+    concurrency: 4
+    logging: *default_logging  # reuse logging settings
+
+default_database: &default_db
+  engine: postgresql
+  host: db.hogwarts.edu
+  port: 5432
+  username: dobby
+  password: sssshhh-secret-database-password
+  pool_size: 10
+databases:
+  primary: 
+    <<: *default_db  # reuse default_db config
+    name: primary_db
+  replica:
+    <<: *default_db  # reuse default_db config
+    name: replica_db
+    read_only: true
