@@ -1,0 +1,42 @@
+{
+    "services": {
+      "api": {
+        "host": "0.0.0.0",
+        "port": 8080,
+        "logging": {
+          "level": "info",
+          "format": "json",
+          "output": "logs/app.log"
+        }
+      },
+      "worker": {
+        "concurrency": 4,
+        "logging": {
+          "level": "info",
+          "format": "json",
+          "output": "logs/app.log"
+        }
+      }
+    },
+    "databases": {
+      "primary": {
+        "engine": "postgresql",
+        "host": "db.hogwarts.edu",
+        "port": 5432,
+        "username": "dobby",
+        "password": "sssshhh-secret-database-password",
+        "pool_size": 10,
+        "name": "primary_db"
+      },
+      "replica": {
+        "engine": "postgresql",
+        "host": "db.hogwarts.edu",
+        "port": 5432,
+        "username": "dobby",
+        "password": "sssshhh-secret-database-password",
+        "pool_size": 10,
+        "name": "replica_db",
+        "read_only": true
+      }
+    }
+  }
