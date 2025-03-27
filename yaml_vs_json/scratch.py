@@ -20,4 +20,5 @@ def read_config_files(suffix: str) -> tuple[dict, dict]:
 # %%
 intro_json, intro_yaml = read_config_files("intro")
 repeated_json, repeated_yaml = read_config_files("repeated")
-# long_string_json, long_string_yaml = read_config_files("long_string")
+longstring_json, longstring_yaml = read_config_files("longstring")
+# %%

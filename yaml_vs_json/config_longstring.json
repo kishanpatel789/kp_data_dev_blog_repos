@@ -1,0 +1,8 @@
+{
+  "spells": {
+    "patronus_charm": {
+      "incantation": "Expecto Patronum",
+      "description": "The Patronus Charm is an advanced defensive spell that conjures a positive energy force, often taking the form of an animal that represents the caster's spirit. It is primarily used to repel Dementors, creatures that feed on human happiness. Only those who can summon deeply positive memories can successfully cast a Patronus.\n"
+    }
+  }
+}
