@@ -1,40 +1,376 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>reveal.js</title>
+    <title>YAML vs JSON Config Files</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/kpdatadev.css" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/default.css" />
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+    <link rel="icon" type="image/svg+xml" href="images/Favicon.svg" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>YAML vs JSON</h1>
+          <h2>Config Files</h2>
+        </section>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+        <section>
+          <section><h2>What's a Config File?</h2></section>
+
+          <section data-auto-animate>
+            <h3 class="fragment">JSON</h3>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers="|2-7|8-11|12-20|21-25|" class="language-json">
+  {
+    "app": {
+      "name": "DefenseAgainstTheDarkArts",
+      "version": "0.0.1",
+      "debug": false,
+      "secret_key": "ssshhh-my-api-key-alohomora"
+    },
+    "server": {
+      "host": "0.0.0.0",
+      "port": 8080
+    },
+    "database": {
+      "engine": "postgresql",
+      "host": "db.hogwarts.edu",
+      "port": 5432,
+      "username": "dobby",
+      "password": "sssshhh-secret-database-password",
+      "name": "public",
+      "pool_size": 10
+    },
+    "logging": {
+      "level": "info",
+      "format": "json",
+      "output": "logs/app.log"
+    }
+  }
+        </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+app:
+  name: DefenseAgainstTheDarkArts
+  version: 0.0.1
+  debug: false
+  secret_key: ssshhh-my-api-key-alohomora
+server:
+  host: 0.0.0.0
+  port: 8080
+database:
+  engine: postgresql
+  host: db.hogwarts.edu
+  port: 5432
+  username: dobby
+  password: sssshhh-secret-database-password
+  name: public
+  pool_size: 10
+logging:
+  level: info
+  format: json
+  output: logs/app.log
+			</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Cleaner Format</h2>
+          </section>
+
+          <section data-auto-animate>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers="|8-11" class="language-json">
+{
+  "app": {
+    "name": "DefenseAgainstTheDarkArts",
+    "version": "0.0.1",
+    "debug": false,
+    "secret_key": "ssshhh-my-api-key-alohomora"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080
+  },
+  "database": {
+    "engine": "postgresql",
+    "host": "db.hogwarts.edu",
+    "port": 5432,
+    "username": "dobby",
+    "password": "sssshhh-secret-database-password",
+    "name": "public",
+    "pool_size": 10
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "output": "logs/app.log"
+  }
+}
+			</code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-json">
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080
+  }
+}
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+server:
+  host: 0.0.0.0
+  port: 8080
+    </code></pre>
+          </section>
+
+          <section>
+            <div
+              style="display: flex; justify-content: space-between; gap: 20px"
+            >
+              <div style="flex: 1">
+                <h3>JSON</h3>
+                <pre><code class="language-json" data-trim data-line-numbers>
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080
+  }
+}
+
+      </code></pre>
+              </div>
+
+              <div style="flex: 1">
+                <h3>YAML</h3>
+                <pre><code class="language-yaml" data-trim data-line-numbers>
+server:
+  host: 0.0.0.0
+  port: 8080
+      </code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-json">
+  {
+    "app": {
+      "name": "DefenseAgainstTheDarkArts",
+      "version": "0.0.1",
+      "debug": false,
+      "secret_key": "ssshhh-my-api-key-alohomora"
+    },
+    "server": {
+      "host": "0.0.0.0",
+      "port": 8080
+    },
+    "database": {
+      "engine": "postgresql",
+      "host": "db.hogwarts.edu",
+      "port": 5432,
+      "username": "dobby",
+      "password": "sssshhh-secret-database-password",
+      "name": "public",
+      "pool_size": 10
+    },
+    "logging": {
+      "level": "info",
+      "format": "json",
+      "output": "logs/app.log"
+    }
+  }
+        </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+app:
+  name: DefenseAgainstTheDarkArts
+  version: 0.0.1
+  debug: false
+  secret_key: ssshhh-my-api-key-alohomora
+server:
+  host: 0.0.0.0
+  port: 8080
+database:
+  engine: postgresql
+  host: db.hogwarts.edu
+  port: 5432
+  username: dobby
+  password: sssshhh-secret-database-password
+  name: public
+  pool_size: 10
+logging:
+  level: info
+  format: json
+  output: logs/app.log
+			</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Comments</h2>
+          </section>
+
+          <section>
+            <h3 class="fragment strike">Comments in JSON</h3>
+            <p class="fragment">Nope. Not allowed.</p>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+{
+  "app": {
+    "name": "DefenseAgainstTheDarkArts",
+    "version": "0.0.1",
+    "environment": "dev",
+    "debug": false,
+    "secret_key": "ssshhh-my-api-key-alohomora"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080
+  }
+}
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+app:
+  name: DefenseAgainstTheDarkArts
+  version: 0.0.1
+  environment: dev
+  debug: true
+  secret_key: ssshhh-my-api-key-alohomora
+server:
+  host: 0.0.0.0
+  port: 8080
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+app:
+  name: DefenseAgainstTheDarkArts
+  version: 0.0.1
+  environment: dev  # options: dev, staging, production
+  debug: true       # WARNING: set this to false before deploying
+  secret_key: ssshhh-my-api-key-alohomora
+
+# network configuration
+server:
+  host: 0.0.0.0
+  port: 8080
+    </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Re-Use Code</h2>
+          </section>
+        </section>
+
+        <section data-background-color="#293c47" style="text-align: left">
+          <div style="margin-bottom: 3em">
+            <p>
+              Ask me questions about:<br />Data engineering,
+              <strong>learning Python</strong>, anything else
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <p>
+              <strong>Kishan Patel</strong><br />
+              <small
+                >Data Engineering Trainer<br />
+                <strong>info@kpdata.dev</strong></small
+              >
+            </p>
+            <img
+              src="images/LightLogo.svg"
+              alt="KP Data Dev logo"
+              style="height: 100px"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        progress: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
 </html>
