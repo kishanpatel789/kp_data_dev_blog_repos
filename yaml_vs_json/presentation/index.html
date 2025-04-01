@@ -263,7 +263,7 @@ logging:
 
             <pre
               data-id="code-animation"
-            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+            ><code data-trim data-noescape data-line-numbers class="language-json">
 {
   "app": {
     "name": "DefenseAgainstTheDarkArts",
@@ -322,6 +322,77 @@ server:
         <section>
           <section>
             <h2>Re-Use Code</h2>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+
+            <pre><code data-trim data-noescape data-line-numbers="|6-10,14-18" class="language-json">
+{
+  "services": {
+    "api": {
+      "host": "0.0.0.0",
+      "port": 8080,
+      "logging": {
+        "level": "info",
+        "format": "json",
+        "output": "logs/app.log"
+      }
+    },
+    "worker": {
+      "concurrency": 4,
+      "logging": {
+        "level": "info",
+        "format": "json",
+        "output": "logs/app.log"
+      }
+    }
+  }
+}
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+services:
+  api:
+    host: 0.0.0.0
+    port: 8080
+    logging: 
+      level: info
+      format: json
+      output: logs/app.log
+  worker:
+    concurrency: 4
+    logging: 
+      level: info
+      format: json
+      output: logs/app.log
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers="|5-8|11" class="language-yaml">
+services:
+  api:
+    host: 0.0.0.0
+    port: 8080
+    logging: &default_logging # anchor logging node
+      level: info
+      format: json
+      output: logs/app.log
+  worker:
+    concurrency: 4
+    logging: *default_logging  # reuse logging settings
+    </code></pre>
           </section>
         </section>
 
