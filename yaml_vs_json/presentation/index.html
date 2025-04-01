@@ -380,7 +380,7 @@ services:
 
             <pre
               data-id="code-animation"
-            ><code data-trim data-noescape data-line-numbers="|5-8|11" class="language-yaml">
+            ><code data-trim data-noescape data-line-numbers="|5-8|11|" class="language-yaml">
 services:
   api:
     host: 0.0.0.0
@@ -393,6 +393,152 @@ services:
     concurrency: 4
     logging: *default_logging  # reuse logging settings
     </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+services:
+  api:
+    host: 0.0.0.0
+    port: 8080
+    logging: 
+      level: info
+      format: json
+      output: logs/app.log
+  worker:
+    concurrency: 4
+    logging: 
+      level: info
+      format: json
+      output: logs/app.log
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+
+            <pre><code data-trim data-noescape data-line-numbers="|4-8,12-16|9,17-18" class="language-json">
+{
+  "databases": {
+    "primary": {
+      "engine": "postgresql",
+      "host": "db.hogwarts.edu",
+      "port": 5432,
+      "username": "dobby",
+      "password": "sssshhh-secret-database-password",
+      "name": "primary_db"
+    },
+    "replica": {
+      "engine": "postgresql",
+      "host": "db.hogwarts.edu",
+      "port": 5432,
+      "username": "dobby",
+      "password": "sssshhh-secret-database-password",
+      "name": "replica_db",
+      "read_only": true
+    }
+  }
+}
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers="|1-6|9,12|" class="language-yaml">
+default_database: &default_db
+  engine: postgresql
+  host: db.hogwarts.edu
+  port: 5432
+  username: dobby
+  password: sssshhh-secret-database-password
+databases:
+  primary: 
+    <<: *default_db  # reuse default_db config
+    name: primary_db
+  replica:
+    <<: *default_db  # reuse default_db config
+    name: replica_db
+    read_only: true
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+databases:
+  primary: 
+    engine: postgresql
+    host: db.hogwarts.edu
+    port: 5432
+    username: dobby
+    password: sssshhh-secret-database-password
+    name: primary_db
+  replica:
+    engine: postgresql
+    host: db.hogwarts.edu
+    port: 5432
+    username: dobby
+    password: sssshhh-secret-database-password
+    name: replica_db
+    read_only: true
+    </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>YAML in the Wild</h2>
+          </section>
+          <section>
+            <ul>
+              <li class="fragment">
+                <a
+                  href="https://github.com/kishanpatel789/kp_data_dev_blog_repos/blob/main/airflow_incremental_loading/docker-compose.yaml"
+                  target="_blank"
+                  >Docker Compose</a
+                >
+              </li>
+              <li class="fragment">
+                <a
+                  href="https://github.com/actions/starter-workflows/blob/main/ci/python-app.yml"
+                  target="_blank"
+                  >Github Actions Workflows</a
+                >
+              </li>
+              <li class="fragment">
+                <a
+                  href="https://github.com/kishanpatel789/letterboxd_pipeline/blob/main/dbt/dbt_project.yml"
+                  target="_blank"
+                >
+                  dbt Model Configuration</a
+                >
+              </li>
+              <li class="fragment">Kubernetes Configuration</li>
+              <li class="fragment">... your next project?</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>JSON is still great</h2>
+
+            <h3 class="fragment">But YAML has advantages for config</h3>
+            <ul class="fragment">
+              <li>Cleaner Format</li>
+              <li>Allows Comments</li>
+              <li>Re-Use Code</li>
+            </ul>
           </section>
         </section>
 
