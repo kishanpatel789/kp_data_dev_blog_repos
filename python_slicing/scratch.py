@@ -11,12 +11,15 @@ s[1:5:2]
 s[1:5:2, 4]
 s[:]
 s[:2]
+s["A":"K"]  # slice("A", "K", None)
 
 # %%
 dir(slice)
 help(slice.indices)
 
 slice(None, 2, None).indices(4)
+
+slice("A", "K", None).indices(5)  # slice indices must be integers or none
 
 # %%
 my_string = "this is amazing"
@@ -100,3 +103,46 @@ for item in orders.split("\n"):
         float(item[UNIT_PRICE].strip().replace("$", "")),
         item[QUANTITY].strip(),
     )
+
+# %%
+import string
+
+
+class SpellBook:
+    def __init__(self):
+        self.spells = []
+
+    def add_spell(self, incantation):
+        self.spells.append(incantation)
+
+    def get_spell_by_first_letter(self, letters):
+        search_results = []
+        for spell in self.spells:
+            if any(spell.startswith(letter) for letter in letters):
+                search_results.append(spell)
+        
+        return sorted(search_results)
+
+    def __getitem__(self, search_key):
+        if isinstance(search_key, str):
+            return self.get_spell_by_first_letter(search_key)
+        if isinstance(search_key, slice):
+            start, stop, step = search_key.start, search_key.stop, search_key.step
+            index_start = string.ascii_uppercase.index(start)
+            index_stop = string.ascii_uppercase.index(stop)
+            return self.get_spell_by_first_letter(string.ascii_uppercase[index_start:index_stop:step])
+
+
+spell_book = SpellBook()
+spell_book.add_spell("Flipendo")
+spell_book.add_spell("Riddikulus")
+spell_book.add_spell("Bombarda")
+spell_book.add_spell("Expelliarmus")
+spell_book.add_spell("Petrificus Totalus")
+spell_book.add_spell("Locomotor Mortis")
+spell_book.add_spell("Wingardium Leviosa")
+
+string.ascii_uppercase.index("A")
+
+spell_book["A"]
+spell_book["A":"H"]
