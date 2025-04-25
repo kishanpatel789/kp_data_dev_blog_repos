@@ -12,6 +12,7 @@ s[1:5:2, 4]
 s[:]
 s[:2]
 s["A":"K"]  # slice("A", "K", None)
+s[4, 6, 1:5]
 
 # %%
 dir(slice)
@@ -120,7 +121,6 @@ class SpellBook:
         for spell in self.spells:
             if any(spell.startswith(letter) for letter in letters):
                 search_results.append(spell)
-        
         return sorted(search_results)
 
     def __getitem__(self, search_key):
@@ -129,8 +129,10 @@ class SpellBook:
         if isinstance(search_key, slice):
             start, stop, step = search_key.start, search_key.stop, search_key.step
             index_start = string.ascii_uppercase.index(start)
-            index_stop = string.ascii_uppercase.index(stop)
-            return self.get_spell_by_first_letter(string.ascii_uppercase[index_start:index_stop:step])
+            index_stop = string.ascii_uppercase.index(stop) + 1
+            return self.get_spell_by_first_letter(
+                string.ascii_uppercase[index_start:index_stop:step]
+            )
 
 
 spell_book = SpellBook()
@@ -143,6 +145,9 @@ spell_book.add_spell("Locomotor Mortis")
 spell_book.add_spell("Wingardium Leviosa")
 
 string.ascii_uppercase.index("A")
+string.ascii_uppercase[::4]
 
-spell_book["A"]
-spell_book["A":"H"]
+spell_book["B"]
+spell_book["A":"L"]
+
+spell_book["BE"]

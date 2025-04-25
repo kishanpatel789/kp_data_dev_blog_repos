@@ -17,3 +17,5 @@ Posts and associated code:
 |[What is a JWT?](https://kpdata.dev/blog/what-is-a-jwt)|[what_is_a_jwt](./what_is_a_jwt)|
 |[Airflow Scheduling](https://kpdata.dev/blog/airflow-scheduling)|[airflow_scheduling](./airflow_scheduling)|
 |[Airflow Incremental Loading](https://kpdata.dev/blog/airflow-incremental-loading)|[airflow_incremental_loading](./airflow_incremental_loading)|
+|[YAML vs JSON Config Files](https://kpdata.dev/blog/yaml-vs-json-config-files)|[yaml_vs_json](./yaml_vs_json)|
+|[Python Slicing](https://kpdata.dev/blog/python-slicing)|[python_slicing](./python_slicing)|
