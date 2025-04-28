@@ -128,11 +128,12 @@ class SpellBook:
             return self.get_spell_by_first_letter(search_key)
         if isinstance(search_key, slice):
             start, stop, step = search_key.start, search_key.stop, search_key.step
+
             index_start = string.ascii_uppercase.index(start)
             index_stop = string.ascii_uppercase.index(stop) + 1
-            return self.get_spell_by_first_letter(
-                string.ascii_uppercase[index_start:index_stop:step]
-            )
+            range_of_letters = string.ascii_uppercase[index_start:index_stop:step]
+
+            return self.get_spell_by_first_letter(range_of_letters)
 
 
 spell_book = SpellBook()
