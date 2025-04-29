@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Python Slicing</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/kpdatadev.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/default.css" />
+
+    <link rel="icon" type="image/svg+xml" href="images/Favicon.svg" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Python Slicing</h1>
+        </section>
+
+        <section>
+          <section><h2>Behind the Scenes</h2></section>
+          <section>
+            <h3>When using the <code>[]</code> operator...</h3>
+            <ol>
+              <li class="fragment">Python generates a slice object.</li>
+              <li class="fragment">That slice object is sent to the sequence's <code>__getitem__</code> method.</li>
+            </ol>
+          </section>
+
+        </section>
+        <section>
+          <section data-auto-animate>
+            <h3 class="fragment">JSON</h3>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers="|2-7|8-11|12-20|21-25|" class="language-json">
+  {
+    "app": {
+      "name": "DefenseAgainstTheDarkArts",
+      "version": "0.0.1",
+      "debug": false,
+      "secret_key": "ssshhh-my-api-key-alohomora"
+    },
+    "server": {
+      "host": "0.0.0.0",
+      "port": 8080
+    },
+    "database": {
+      "engine": "postgresql",
+      "host": "db.hogwarts.edu",
+      "port": 5432,
+      "username": "dobby",
+      "password": "sssshhh-secret-database-password",
+      "name": "public",
+      "pool_size": 10
+    },
+    "logging": {
+      "level": "info",
+      "format": "json",
+      "output": "logs/app.log"
+    }
+  }
+        </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+app:
+  name: DefenseAgainstTheDarkArts
+  version: 0.0.1
+  debug: false
+  secret_key: ssshhh-my-api-key-alohomora
+server:
+  host: 0.0.0.0
+  port: 8080
+database:
+  engine: postgresql
+  host: db.hogwarts.edu
+  port: 5432
+  username: dobby
+  password: sssshhh-secret-database-password
+  name: public
+  pool_size: 10
+logging:
+  level: info
+  format: json
+  output: logs/app.log
+			</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Cleaner Format</h2>
+          </section>
+
+          <section data-auto-animate>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers="|8-11" class="language-json">
+{
+  "app": {
+    "name": "DefenseAgainstTheDarkArts",
+    "version": "0.0.1",
+    "debug": false,
+    "secret_key": "ssshhh-my-api-key-alohomora"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080
+  },
+  "database": {
+    "engine": "postgresql",
+    "host": "db.hogwarts.edu",
+    "port": 5432,
+    "username": "dobby",
+    "password": "sssshhh-secret-database-password",
+    "name": "public",
+    "pool_size": 10
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "output": "logs/app.log"
+  }
+}
+			</code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-json">
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080
+  }
+}
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+server:
+  host: 0.0.0.0
+  port: 8080
+    </code></pre>
+          </section>
+
+          <section>
+            <div
+              style="display: flex; justify-content: space-between; gap: 20px"
+            >
+              <div style="flex: 1">
+                <h3>JSON</h3>
+                <pre><code class="language-json" data-trim data-line-numbers>
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080
+  }
+}
+
+      </code></pre>
+              </div>
+
+              <div style="flex: 1">
+                <h3>YAML</h3>
+                <pre><code class="language-yaml" data-trim data-line-numbers>
+server:
+  host: 0.0.0.0
+  port: 8080
+      </code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-json">
+  {
+    "app": {
+      "name": "DefenseAgainstTheDarkArts",
+      "version": "0.0.1",
+      "debug": false,
+      "secret_key": "ssshhh-my-api-key-alohomora"
+    },
+    "server": {
+      "host": "0.0.0.0",
+      "port": 8080
+    },
+    "database": {
+      "engine": "postgresql",
+      "host": "db.hogwarts.edu",
+      "port": 5432,
+      "username": "dobby",
+      "password": "sssshhh-secret-database-password",
+      "name": "public",
+      "pool_size": 10
+    },
+    "logging": {
+      "level": "info",
+      "format": "json",
+      "output": "logs/app.log"
+    }
+  }
+        </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+app:
+  name: DefenseAgainstTheDarkArts
+  version: 0.0.1
+  debug: false
+  secret_key: ssshhh-my-api-key-alohomora
+server:
+  host: 0.0.0.0
+  port: 8080
+database:
+  engine: postgresql
+  host: db.hogwarts.edu
+  port: 5432
+  username: dobby
+  password: sssshhh-secret-database-password
+  name: public
+  pool_size: 10
+logging:
+  level: info
+  format: json
+  output: logs/app.log
+			</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Comments</h2>
+          </section>
+
+          <section>
+            <h3 class="fragment strike">Comments in JSON</h3>
+            <p class="fragment">Nope. Not allowed.</p>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-json">
+{
+  "app": {
+    "name": "DefenseAgainstTheDarkArts",
+    "version": "0.0.1",
+    "environment": "dev",
+    "debug": false,
+    "secret_key": "ssshhh-my-api-key-alohomora"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080
+  }
+}
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+app:
+  name: DefenseAgainstTheDarkArts
+  version: 0.0.1
+  environment: dev
+  debug: true
+  secret_key: ssshhh-my-api-key-alohomora
+server:
+  host: 0.0.0.0
+  port: 8080
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+app:
+  name: DefenseAgainstTheDarkArts
+  version: 0.0.1
+  environment: dev  # options: dev, staging, production
+  debug: true       # WARNING: set this to false before deploying
+  secret_key: ssshhh-my-api-key-alohomora
+
+# network configuration
+server:
+  host: 0.0.0.0
+  port: 8080
+    </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Re-Use Code</h2>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+
+            <pre><code data-trim data-noescape data-line-numbers="|6-10,14-18" class="language-json">
+{
+  "services": {
+    "api": {
+      "host": "0.0.0.0",
+      "port": 8080,
+      "logging": {
+        "level": "info",
+        "format": "json",
+        "output": "logs/app.log"
+      }
+    },
+    "worker": {
+      "concurrency": 4,
+      "logging": {
+        "level": "info",
+        "format": "json",
+        "output": "logs/app.log"
+      }
+    }
+  }
+}
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+services:
+  api:
+    host: 0.0.0.0
+    port: 8080
+    logging: 
+      level: info
+      format: json
+      output: logs/app.log
+  worker:
+    concurrency: 4
+    logging: 
+      level: info
+      format: json
+      output: logs/app.log
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers="|5-8|11|" class="language-yaml">
+services:
+  api:
+    host: 0.0.0.0
+    port: 8080
+    logging: &default_logging # anchor logging node
+      level: info
+      format: json
+      output: logs/app.log
+  worker:
+    concurrency: 4
+    logging: *default_logging  # reuse logging settings
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+services:
+  api:
+    host: 0.0.0.0
+    port: 8080
+    logging: 
+      level: info
+      format: json
+      output: logs/app.log
+  worker:
+    concurrency: 4
+    logging: 
+      level: info
+      format: json
+      output: logs/app.log
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>JSON</h3>
+
+            <pre><code data-trim data-noescape data-line-numbers="|4-8,12-16|9,17-18" class="language-json">
+{
+  "databases": {
+    "primary": {
+      "engine": "postgresql",
+      "host": "db.hogwarts.edu",
+      "port": 5432,
+      "username": "dobby",
+      "password": "sssshhh-secret-database-password",
+      "name": "primary_db"
+    },
+    "replica": {
+      "engine": "postgresql",
+      "host": "db.hogwarts.edu",
+      "port": 5432,
+      "username": "dobby",
+      "password": "sssshhh-secret-database-password",
+      "name": "replica_db",
+      "read_only": true
+    }
+  }
+}
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers="|1-6|9,12|" class="language-yaml">
+default_database: &default_db
+  engine: postgresql
+  host: db.hogwarts.edu
+  port: 5432
+  username: dobby
+  password: sssshhh-secret-database-password
+databases:
+  primary: 
+    <<: *default_db  # reuse default_db config
+    name: primary_db
+  replica:
+    <<: *default_db  # reuse default_db config
+    name: replica_db
+    read_only: true
+    </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h3>YAML</h3>
+
+            <pre
+              data-id="code-animation"
+            ><code data-trim data-noescape data-line-numbers class="language-yaml">
+databases:
+  primary: 
+    engine: postgresql
+    host: db.hogwarts.edu
+    port: 5432
+    username: dobby
+    password: sssshhh-secret-database-password
+    name: primary_db
+  replica:
+    engine: postgresql
+    host: db.hogwarts.edu
+    port: 5432
+    username: dobby
+    password: sssshhh-secret-database-password
+    name: replica_db
+    read_only: true
+    </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>YAML in the Wild</h2>
+          </section>
+          <section>
+            <ul>
+              <li class="fragment">
+                <a
+                  href="https://github.com/kishanpatel789/kp_data_dev_blog_repos/blob/main/airflow_incremental_loading/docker-compose.yaml"
+                  target="_blank"
+                  >Docker Compose</a
+                >
+              </li>
+              <li class="fragment">
+                <a
+                  href="https://github.com/actions/starter-workflows/blob/main/ci/python-app.yml"
+                  target="_blank"
+                  >Github Actions Workflows</a
+                >
+              </li>
+              <li class="fragment">
+                <a
+                  href="https://github.com/kishanpatel789/letterboxd_pipeline/blob/main/dbt/dbt_project.yml"
+                  target="_blank"
+                >
+                  dbt Model Configuration</a
+                >
+              </li>
+              <li class="fragment">Kubernetes Configuration</li>
+              <li class="fragment">... your next project?</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>JSON is still great</h2>
+
+            <h3 class="fragment">But YAML has advantages for config</h3>
+            <ul class="fragment">
+              <li>Cleaner Format</li>
+              <li>Allows Comments</li>
+              <li>Re-Use Code</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-background-color="#293c47" style="text-align: left">
+          <div style="margin-bottom: 1em">
+            <p>
+              Ask me questions about:<br />Data engineering,
+              <strong>learning Python</strong>, anything else
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <p>
+              <strong>Kishan Patel</strong><br />
+              <small
+                >Data Engineering Trainer<br />
+                <strong>info@kpdata.dev</strong></small
+              >
+            </p>
+            <img
+              src="images/LightLogo.svg"
+              alt="KP Data Dev logo"
+              style="height: 100px"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        progress: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>

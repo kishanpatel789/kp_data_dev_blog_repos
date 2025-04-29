@@ -3,7 +3,6 @@ class MySeq:
     def __getitem__(self, index):
         return index
 
-
 s = MySeq()
 
 s[1:5]
