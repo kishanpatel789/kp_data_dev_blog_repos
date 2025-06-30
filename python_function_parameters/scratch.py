@@ -63,11 +63,11 @@ def process_events(events, warnings=[]):  # 🚨 DANGER HERE
 
 # 1st batch
 events1 = ["ok", "error:missing_field"]
-print("Warnings 1:", process_events(events1)) # expected: ['error:missing_field']
+process_events(events1) # expected: ['error:missing_field']
 
 # 2nd batch
 events2 = ["error:bad_format"]
-print("Warnings 2:", process_events(events2)) # expected: ['error:bad_format']
+process_events(events2) # expected: ['error:bad_format'] ... but we get
 
 # %%
 def log_message(message, level):
@@ -91,5 +91,54 @@ def send_email(to, subject, *, cc, bcc, reply_to):
 
 send_email('hermione@hogwarts.edu', 'I love you', 'harry@hogwarts.edu', 'molly@alumni.hogwarts.edu', 'ron@hogwarts.edu')
 
-send_email('hermione@hogwarts.edu', 'I love you', cc='harry@hogwarts.edu', bcc='molly@alumni.hogwarts.edu', reply_to='ron@hogwarts.edu')
+send_email('hermione@hogwarts.edu', 'I love you', 
+           cc='harry@hogwarts.edu',
+           bcc='molly@alumni.hogwarts.edu',
+           reply_to='ron@hogwarts.edu')
 
+
+
+# %%
+def func(x, y, *args):
+    print(f"{x=}, {y=}, {args=}")
+func(1, 2, 3, 4, 5)
+
+# %%
+def log_message(*messages, level="INFO"):
+    ts_formatted = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    for message in messages:
+        print(f"[{ts_formatted}] [{level}] {message}")
+
+log_message("Start backup", "Mark disk", level="INFO")
+
+
+# %%
+def func(x, y, **kwargs):
+    print(f"{x=}, {y=}, {kwargs=}")
+
+func(1, 2, a=3, b=4, c=5)
+
+# %%
+def func(x, *args, y, **kwargs):
+    ...
+
+def func(x, y=4, *args, **kwargs):
+    ...
+
+def func(**kwargs, x, y=4, *args): # **kwargs must be at end
+    ...
+
+# %%
+def log_message(*messages, level="INFO", **metadata):
+    ts_formatted = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    meta_str = " ".join(f"{k}={v}" for k, v in metadata.items())
+    for message in messages:
+        print(f"[{ts_formatted}] [{level}] {message} {meta_str}")
+
+log_message(
+    "Disk usage at 85%",
+    "Auto-scaling triggered",
+    level="WARNING",
+    instance="vm-123",
+    region="us-east-1",
+)
