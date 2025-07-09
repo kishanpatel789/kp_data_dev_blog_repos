@@ -27,143 +27,31 @@
           </section>
 
           <section data-auto-animate>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1-4|7|9|10|11|12|" class="language-python">
-orders = """\
-1001      Nimbus 2000               $500.00       1
-1002      Cauldron                   $20.50      17
-1003      Chocolate Frogs             $3.75     127"""
-
-# process each line
-for item in orders.split("\n"):
-    print(
-        item[:10].strip(),
-        item[10:35].strip(),
-        float(item[35:43].strip().replace("$", "")),
-        item[43:].strip(),
-    )
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def my_func(x, y):
+    ...
             </code></pre>
           </section>
 
-        </section>
-
-        <section>
-          <section>
-            <h2>Slicing Basics</h2>
-          </section>
-        </section>
-
-        <section>
-          <section><h2>Behind the Scenes</h2></section>
-          <section>
-            <h3>When using the <code>[]</code> operator...</h3>
-            <ol>
-              <li class="fragment">Python generates a slice object.</li>
-              <li class="fragment">That slice object is sent to the sequence's <code>__getitem__</code> method.</li>
-            </ol>
-          </section>
-        </section>
-
-        <section>
-          <section><h2>Advanced Slicing Use Cases</h2></section>
-
-          <section>
-            <h3>Flat Text File</h3>
-            <pre><code data-trim data-noescape class="language-text">
-1001      Nimbus 2000               $500.00       1
-1002      Cauldron                   $20.50      17
-1003      Chocolate Frogs             $3.75     127
-            </code></pre>
-          </section>
-          <section data-auto-animate>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1-4|7|9|10|11|12|" class="language-python">
-orders = """\
-1001      Nimbus 2000               $500.00       1
-1002      Cauldron                   $20.50      17
-1003      Chocolate Frogs             $3.75     127"""
-
-# process each line
-for item in orders.split("\n"):
-    print(
-        item[:10].strip(),
-        item[10:35].strip(),
-        float(item[35:43].strip().replace("$", "")),
-        item[43:].strip(),
-    )
-            </code></pre>
-          </section>
           <section data-auto-animate>
             <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
-for item in orders.split("\n"):
-    print(
-        item[:10].strip(),
-        item[10:35].strip(),
-        float(item[35:43].strip().replace("$", "")),
-        item[43:].strip(),
-    )
+def my_func(x, / y, *, z):
+    ...
             </code></pre>
-          </section>
-          <section data-auto-animate>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
-for item in orders.split("\n"):
-    print(
-        item[ORDER_ID].strip(),
-        item[DESCRIPTION].strip(),
-        float(item[UNIT_PRICE].strip().replace("$", "")),
-        item[QUANTITY].strip(),
-    )
-            </code></pre>
-          </section>
-          <section data-auto-animate>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1-5|10-13|" class="language-python">
-# define column boundaries as slice objects
-ORDER_ID = slice(None, 10)
-DESCRIPTION = slice(10, 35)
-UNIT_PRICE = slice(35, 43)
-QUANTITY = slice(43, None)
-
-# process each line
-for item in orders.split("\n"):
-    print(
-        item[ORDER_ID].strip(),
-        item[DESCRIPTION].strip(),
-        float(item[UNIT_PRICE].strip().replace("$", "")),
-        item[QUANTITY].strip(),
-    )
+            <pre class="fragment"><code data-trim data-noescape data-line-numbers class="language-python">
+def my_func(x,  y, *args, z, **kwargs):
+    ...
             </code></pre>
           </section>
 
-          <section><h3>Slicing Your Own Class</h3></section>
+        </section>
+
+        <section>
           <section>
-            <pre><code data-trim data-noescape data-line-numbers="|2-3|5-6|8-13|15-26|16-17|19-26|20|22-24|26|" class="language-python">
-class SpellBook:
-    def __init__(self):
-        self.spells = []
-
-    def add_spell(self, incantation):
-        self.spells.append(incantation)
-
-    def get_spell_by_first_letter(self, letters):
-        search_results = []
-        for spell in self.spells:
-            if any(spell.startswith(letter) for letter in letters):
-                search_results.append(spell)
-        return sorted(search_results)
-
-    def __getitem__(self, search_key):
-        if isinstance(search_key, str):
-            return self.get_spell_by_first_letter(search_key)
-
-        if isinstance(search_key, slice):
-            start, stop, step = search_key.start, search_key.stop, search_key.step
-
-            index_start = string.ascii_uppercase.index(start)
-            index_stop = string.ascii_uppercase.index(stop) + 1
-            range_of_letters = string.ascii_uppercase[index_start:index_stop:step]
-
-            return self.get_spell_by_first_letter(range_of_letters)
-            </code></pre>
+            <h2>Positional and Keyword<br>Arguments</h2>
           </section>
         </section>
+
 
 
         <section>

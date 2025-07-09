@@ -33,6 +33,7 @@ def make_point(x, y, /):
 
 make_point(y=-4, x=5)
 
+make_point(5, -4)
 
 # %%
 def send_log(message, *, level):
@@ -90,9 +91,9 @@ func(1, 2, a=3, b=4, c=5)
 # %%
 def send_log(*messages, level="INFO", **metadata):
     ts_formatted = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    meta_str = " ".join(f"{k}={v}" for k, v in metadata.items())
+    meta_str = " | ".join(f"{k}={v}" for k, v in metadata.items())
     for message in messages:
-        print(f"[{ts_formatted}] [{level}] {message} {meta_str}")
+        print(f"[{ts_formatted}] [{level}] {message} | {meta_str}")
 
 send_log(
     "Disk usage at 85%",
@@ -101,3 +102,11 @@ send_log(
     instance="vm-123",
     region="us-east-1",
 )
+
+
+# %%
+def func(x, y, *args, z, **kwargs):
+    print(f"{x=}, {y=}, {z=}")
+    print(f"{args=} {kwargs=}")
+
+func(1, 2, 3, 4, 5, z=6, b=7)
