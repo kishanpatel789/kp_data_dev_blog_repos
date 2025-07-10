@@ -1,13 +1,16 @@
 # %%
 from datetime import datetime 
 
-
-# %%
 def send_log(message, level):
     ts_formatted = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{ts_formatted}] [{level}] {message}")
 
 send_log("Hello World", "INFO")
+
+
+
+
+
 
 # %%
 send_log("Hello World", "INFO") # positional
@@ -19,6 +22,10 @@ send_log(level="INFO", message="Hello World") # keyword (but different order)
 send_log("Hello World", level="INFO") # mixture of positional and keyword
 
 
+
+
+
+
 # %%
 def send_log(message, / ,level):
     ...
@@ -27,6 +34,12 @@ send_log("Hello World", "INFO") # positional
 
 send_log(message="Hello World", level="INFO") # keyword
 
+
+
+
+
+
+
 # %%
 def make_point(x, y, /):
     ...
@@ -34,6 +47,12 @@ def make_point(x, y, /):
 make_point(y=-4, x=5)
 
 make_point(5, -4)
+
+
+
+
+
+
 
 # %%
 def send_log(message, *, level):
@@ -45,8 +64,12 @@ send_log("Hello World", "INFO") # positional
 
 
 
+
+
+
+
 # %%
-def send_email(to, subject, *, cc, bcc, reply_to, encrypt=False):
+def send_email(to, subject, *, cc, bcc, reply_to):
     ...
 
 send_email('hermione@hogwarts.edu', 'I love you', 'harry@hogwarts.edu', 'molly@alumni.hogwarts.edu', 'ron@hogwarts.edu')
@@ -59,8 +82,6 @@ send_email(
     reply_to='ron@hogwarts.edu',
 )
 
-
-
 # %%
 def func(x, y, *args):
     print(f"{x=}, {y=}, {args=}")
@@ -68,13 +89,21 @@ def func(x, y, *args):
 
 func(1, 2, 3, 4, 5)
 
+
+
+
+
+
+
+
 # %%
 def send_log(*messages, level="INFO"):
     ts_formatted = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     for message in messages:
         print(f"[{ts_formatted}] [{level}] {message}")
 
-send_log("Start backup", "Mark disk", "Backup complete", level="INFO")
+send_log("Start backup", "Mark disk", "Uploading files...", level="INFO")
+
 
 
 
@@ -88,16 +117,21 @@ def func(x, y, **kwargs):
 
 func(1, 2, a=3, b=4, c=5)
 
+
+
+
+
+
+
+
 # %%
-def send_log(*messages, level="INFO", **metadata):
+def send_log(message, level="INFO", **metadata):
     ts_formatted = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     meta_str = " | ".join(f"{k}={v}" for k, v in metadata.items())
-    for message in messages:
-        print(f"[{ts_formatted}] [{level}] {message} | {meta_str}")
+    print(f"[{ts_formatted}] [{level}] {message} | {meta_str}")
 
 send_log(
     "Disk usage at 85%",
-    "Auto-scaling triggered",
     level="WARNING",
     instance="vm-123",
     region="us-east-1",
@@ -110,3 +144,12 @@ def func(x, y, *args, z, **kwargs):
     print(f"{args=} {kwargs=}")
 
 func(1, 2, 3, 4, 5, z=6, b=7)
+
+
+
+
+
+
+
+
+

@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
     <link rel="stylesheet" href="dist/theme/kpdatadev.css" />
+    <link rel="stylesheet" href="dist/pres_custom.css" />
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/default.css" />
 
     <link rel="icon" type="image/svg+xml" href="images/Favicon.svg" />
+
   </head>
   <body>
     <div class="reveal">
@@ -38,7 +40,14 @@ def my_func(x, y):
 def my_func(x, / y, *, z):
     ...
             </code></pre>
-            <pre class="fragment"><code data-trim data-noescape data-line-numbers class="language-python">
+          </section>
+
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def my_func(x, / y, *, z):
+    ...
+            </code></pre>
+            <pre><code data-trim data-noescape data-line-numbers class="language-python">
 def my_func(x,  y, *args, z, **kwargs):
     ...
             </code></pre>
@@ -50,22 +59,57 @@ def my_func(x,  y, *args, z, **kwargs):
           <section>
             <h2>Positional and Keyword<br>Arguments</h2>
           </section>
+
+          <section>
+            <img src="/images/ParameterMap.jpeg" alt="">
+          </section>
+
+          <section>
+            <h3>Common Patterns</h3>
+            <pre class="fragment">
+              <code class="language-python">f(x1, /, x2, *, x3)   # pos-only, pos-or-kw, kw-only</code>
+            </pre>
+            <pre class="fragment">
+              <code class="language-python">f(x1, /, *, x2)       # positional-only, keyword-only</code>
+            </pre>
+            <pre class="fragment">
+              <code class="language-python">f(x1, x2, /)          # all params positional only</code>
+            </pre>
+            <pre class="fragment">
+              <code class="language-python">f(*, x1, x2)          # all params keyword only</code>
+            </pre>
+          </section>
+
+          <section>
+            <h3>When to use each parameter type?</h3>
+            <ol>
+              <li class="fragment"><strong>Position-only:</strong> Order of arguments matters</li>
+              <li class="fragment"><strong>Keyword-only:</strong> Improve readability when the function is called</li>
+              <li class="fragment"><strong>Position-or-Keyword:</strong>  It doesn't matter</li>
+            </ol>
+          </section>
         </section>
 
 
 
         <section>
           <section>
-            <h2>Python is easy</h2>
+            <h2>Variable Arguments</h2>
+          </section>
 
-            <h3 class="fragment">But it's easy to miss advanced features</h3>
-            <ul class="fragment">
-              <li>Slice sequences with <code>[]</code></li>
-              <li>Create explicit <code>slice</code> objects</li>
-              <li>Make custom classes slicable</li>
-            </ul>
+          <section data-markdown>
+            <textarea data-template>
+| Parameter Type            | Example Definition  | Must Be Called As  |
+| ------------------------- | ------------------- | ------------------ |
+| **Positional-only**       | `def f(x, /)`       | `f(1)`             |
+| **Positional-or-keyword** | `def f(x)`          | `f(1)` or `f(x=1)` |
+| **Keyword-only**          | `def f(*, x)`       | `f(x=1)`           |
+| **Variable Positional**   | `def f(*args)`      | `f(1, 2, 3)`       |
+| **Variable Keyword**      | `def f(**kwargs)`   | `f(x=1, y=2)`      |
+            </textarea>
           </section>
         </section>
+
 
         <section data-background-color="#293c47" style="text-align: left">
           <div style="margin-bottom: 1em">
@@ -112,7 +156,11 @@ def my_func(x,  y, *args, z, **kwargs):
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
-      });
+        highlight: {
+              highlightOnLoad: true,
+              escapeHTML: false  // 🔥 this line prevents fragment-destruction
+            }
+      }); 
     </script>
   </body>
 </html>
