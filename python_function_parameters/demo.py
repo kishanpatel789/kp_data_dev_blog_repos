@@ -27,7 +27,7 @@ send_log("Hello World", level="INFO") # mixture of positional and keyword
 
 
 # %%
-def send_log(message, / ,level):
+def send_log(message, / , level):
     ...
 
 send_log("Hello World", "INFO") # positional
