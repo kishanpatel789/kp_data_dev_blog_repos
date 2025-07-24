@@ -19,3 +19,4 @@ Posts and associated code:
 |[Airflow Incremental Loading](https://kpdata.dev/blog/airflow-incremental-loading)|[airflow_incremental_loading](./airflow_incremental_loading)|
 |[YAML vs JSON Config Files](https://kpdata.dev/blog/yaml-vs-json-config-files)|[yaml_vs_json](./yaml_vs_json)|
 |[Python Slicing](https://kpdata.dev/blog/python-slicing)|[python_slicing](./python_slicing)|
+|[Python Function Parameters](https://kpdata.dev/blog/python-function-parameters)|[python_function_parameters](./python_function_parameters)|
