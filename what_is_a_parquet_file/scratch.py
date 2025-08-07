@@ -55,17 +55,37 @@ numbers_table
 numbers_table.to_pandas()["numbers"].value_counts()
 
 # %%
-# naive storage
-pq.write_table(numbers_table, "data/numbers_plain.parquet", use_dictionary=False)
+# plain encoding
+pq.write_table(
+    numbers_table,
+    "data/numbers_plain.parquet",
+    use_dictionary=False,
+    column_encoding={
+        "numbers": "PLAIN",
+    },
+)
 
 # dictionary encoding
 pq.write_table(numbers_table, "data/numbers_dict.parquet", use_dictionary=True)
 
 # %%
+# run length_encoding
 sorted_table = pa.table({"numbers": sorted(numbers)})
 sorted_table
 
 pq.write_table(sorted_table, "data/numbers_sorted.parquet")
+
+# %%
+# check plain encoding, dictionary encoding
+plain_file = pq.ParquetFile("data/numbers_plain.parquet")
+dict_file = pq.ParquetFile("data/numbers_dict.parquet")
+sorted_file = pq.ParquetFile("data/numbers_sorted.parquet")
+
+# %%
+plain_file.metadata.row_group(0).column(0)
+dict_file.metadata.row_group(0).column(0)
+sorted_file.metadata.row_group(0).column(0)
+
 
 # %%
 # delta encoding
@@ -92,3 +112,30 @@ pq.write_table(
         "timestamps": "DELTA_BINARY_PACKED",
     },
 )
+
+# %%
+### String Experiments
+people_options = ["Harry", "Hermione", "Ron"]
+people = [random.choice(people_options) for _ in range(100_000_000)]
+people_table = pa.table({"people": people})
+
+# %%
+# plain encoding
+pq.write_table(
+    people_table,
+    "data/people_plain.parquet",
+    use_dictionary=False,
+    column_encoding={
+        "people": "PLAIN",
+    },
+)
+
+# dictionary encoding
+pq.write_table(people_table, "data/people_dict.parquet", use_dictionary=True)
+
+# %%
+# run length_encoding
+sorted_people_table = pa.table({"people": sorted(people)})
+sorted_people_table
+
+pq.write_table(sorted_people_table, "data/people_sorted.parquet")
