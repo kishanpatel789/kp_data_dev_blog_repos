@@ -89,7 +89,6 @@ sorted_file.metadata.row_group(0).column(0)
 
 # %%
 # delta encoding
-
 timestamps = [datetime.now() for _ in range(1_000_000)]
 ts_table = pa.table({"timestamps": timestamps})
 ts_table
@@ -97,9 +96,12 @@ ts_table
 # %%
 pq.write_table(
     ts_table,
-    "data/timestamps.parquet",
+    "data/timestamps_plain.parquet",
     compression=None,
     use_dictionary=False,
+    column_encoding={
+        "timestamps": "PLAIN",
+    },
 )
 
 # %%
