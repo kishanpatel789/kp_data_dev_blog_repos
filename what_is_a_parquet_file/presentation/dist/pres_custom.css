@@ -1,0 +1,9 @@
+section table {
+  font-size: 0.7em;
+  margin: 0 auto; 
+}
+
+section table td, section table th {
+  padding: 0.3em 0.6em;
+}
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>What Is A Parquet File?</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/kpdatadev.css" />
+    <link rel="stylesheet" href="dist/pres_custom.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/default.css" />
+
+    <link rel="stylesheet" href="dist/d3_styles.css" />
+
+    <link rel="icon" type="image/svg+xml" href="images/Favicon.svg" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h1>What Is A Parquet File?</h1>
+          </section>
+        </section>
+        
+        <section>
+          <section>
+            <h2>Parquet vs CSV</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Parquet Storage Format</h2>
+          </section>
+          
+          <section data-id="row-chart-slide">
+            <h3>Row-Based Storage</h3>
+            <svg id="viz-row" viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
+
+          <section data-id="column-chart-slide">
+            <h3>Column-Based Storage</h3>
+            <svg id="viz-column" viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
+
+          <section data-id="hybrid-chart-slide">
+            <h3>Hybrid-Based Storage</h3>
+            <svg id="viz-hybrid" viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet"></svg>
+          </section>
+
+        </section>
+
+
+
+        <section data-background-color="#293c47" style="text-align: left">
+          <div style="margin-bottom: 1em">
+            <p>
+              Ask me questions about:<br />Data engineering,
+              <strong>learning Python</strong>, anything else
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <p>
+              <strong>Kishan Patel</strong><br />
+              <small
+                >Data Engineering Trainer<br />
+                <strong>info@kpdata.dev</strong></small
+              >
+            </p>
+            <img
+              src="images/LightLogo.svg"
+              alt="KP Data Dev logo"
+              style="height: 100px"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        progress: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      }); 
+    </script>
+
+    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="dist/d3_parquet_storage.js"></script>
+    <script>
+      Reveal.on('slidechanged', event => {
+        const id = event.currentSlide.dataset.id;
+        if (id === 'row-chart-slide') {
+          createRowViz();  
+        } else if (id === 'column-chart-slide') {
+          createColumnViz();  
+        } else if (id === 'hybrid-chart-slide') {
+          createHybridViz();
+        }
+      });
+    </script>
+  </body>
+</html>
