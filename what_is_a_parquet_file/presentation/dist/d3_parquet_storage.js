@@ -20,6 +20,10 @@ config.storageWidth = config.storageWrap * (config.cellSize + config.spacing);
 config.cellsPerRG = config.rowGroupSize * config.tableCols;
 config.numRG = Math.ceil(config.tableRows / config.rowGroupSize);
 
+let rowVizRendered = false;
+let columnVizRendered = false;
+let hybridVizRendered = false;
+
 
 function writeSectionHeaders(svg, storage_title) {
   const headerOffset = 20
@@ -119,6 +123,8 @@ function createCells(svg) {
 }
 
 function createRowViz() {
+  if (rowVizRendered) return;
+  
   const svg = d3.select("#viz-row");
   writeSectionHeaders(svg, "Row Storage (on disk)");
   drawGhosts(svg);
@@ -129,9 +135,13 @@ function createRowViz() {
     inStorageView = !inStorageView;
     transitionViz("row", inStorageView)
   })
+
+  rowVizRendered = true;
 }
 
 function createColumnViz() {
+  if (columnVizRendered) return;
+
   const svg = d3.select("#viz-column");
   writeSectionHeaders(svg, "Column Storage (on disk)");
   drawGhosts(svg);
@@ -142,9 +152,13 @@ function createColumnViz() {
     inStorageView = !inStorageView;
     transitionViz("column", inStorageView)
   })
+  
+  columnVizRendered = true;
 }
 
 function createHybridViz() {
+  if (hybridVizRendered) return;
+
   const svg = d3.select("#viz-hybrid");
   writeSectionHeaders(svg, "Hybrid Storage");
   drawGhosts(svg);
@@ -156,6 +170,8 @@ function createHybridViz() {
     inStorageView = !inStorageView;
     transitionViz("hybrid", inStorageView)
   })
+
+  hybridVizRendered = true;
 }
 
 function getIndex(d, type) {
