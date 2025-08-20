@@ -68,31 +68,137 @@
         <section>
           <section>
             <h2>Storage Optimizations</h2>
+
+            <ul>
+              <li class="fragment">Compression: gzip, snappy, zstd</li>
+              <li class="fragment">Encoding</li>
+            </ul>
           </section>
 
-          <section>
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+data = ["Harry", "Hermione", "Harry", "Harry", "Ron", "Hermione", "Ron", "Harry"]
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
             <h3>1. Plain Encoding</h3>
-            <p>What you see is what you get</p>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+data = ["Harry", "Hermione", "Harry", "Harry", "Ron", "Hermione", "Ron", "Harry"]
+            </code></pre>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+# option 1: plain encoding (what you see is what you get)
+column_chunk = ["Harry", "Hermione", "Harry", "Harry", "Ron", "Hermione", "Ron", "Harry"]
+            </code></pre>
           </section>
 
-          <section>
+          <section data-auto-animate>
             <h3>2. Dictionary Encoding</h3>
-
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+# option 2: dictionary encoding (define a dictionary and then encode values)
+dictionary = {
+  0: "Harry",
+  1: "Hermione",
+  2: "Ron",
+}
+            </code></pre>
           </section>
 
-          <section>
+          <section data-auto-animate>
+            <h3>2. Dictionary Encoding</h3>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1-2|10|" class="language-python">
+# option 1: plain encoding
+column_chunk = ["Harry", "Hermione", "Harry", "Harry", "Ron", "Hermione", "Ron", "Harry"]
+
+# option 2: dictionary encoding (define a dictionary and then encode values)
+dictionary = {
+  0: "Harry",
+  1: "Hermione",
+  2: "Ron",
+}
+column_chunk = [0, 1, 0, 0, 2, 1, 2, 0] 
+            </code></pre>
+          </section>
+          
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+data = ["Harry", "Harry", "Harry", "Harry", "Hermione", "Hermione", "Hermione", "Hermione", "Hermione", "Hermione", "Ron", "Ron", "Ron", "Ron", "Ron", "Ron", "Ron", "Ron"]
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+data = ["Harry", "Harry", "Harry", "Harry", "Hermione", "Hermione", "Hermione", "Hermione", "Hermione", "Hermione", "Ron", "Ron", "Ron", "Ron", "Ron", "Ron", "Ron", "Ron"]
+            </code></pre>
+
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+# dictionary encoding
+column_chunk = [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2]
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
             <h3>3. Run Length Encoding</h3>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+# dictionary encoding
+column_chunk = [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2]
+            </code></pre>
 
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+# option 3: run length encoding
+column_chunk = [(0, 4), (1, 6), (2, 8)]  # template: (value, count)
+            </code></pre>
+          </section>
+
+
+          <section data-markdown data-auto-animate>
+            <textarea data-template>
+| Timestamps |
+| --:        |
+| 1754399851 |
+| 1754399855 |
+| 1754399857 |
+| 1754399859 |
+| 1754399860 |
+            </textarea>
+          </section>
+
+          <section data-markdown data-auto-animate>
+            <textarea data-template>
+| Timestamps | Plain Encoding |
+| --:        | --:            |
+| 1754399851 | 1754399851     |
+| 1754399855 | 1754399855     |
+| 1754399857 | 1754399857     |
+| 1754399859 | 1754399859     |
+| 1754399860 | 1754399860     |
+            </textarea>
+          </section>
+
+          <section data-markdown data-auto-animate>
+            <textarea data-template>
+### 4. Delta Encoding
+| Timestamps | Plain Encoding | Delta Encoding |
+| --:        | --:            | --:            |
+| 1754399851 | 1754399851     | 1754399851     |
+| 1754399855 | 1754399855     | 4              | 
+| 1754399857 | 1754399857     | 2              |
+| 1754399859 | 1754399859     | 2              |
+| 1754399860 | 1754399860     | 1              |
+            </textarea>
           </section>
 
           <section>
-            <h3>4. Delta Encoding</h3>
-
+            <h3>Common Encoding Patterns</h3>
+            <ol style="font-size: 0.8em;">
+              <li class="fragment"><strong>Plain Encoding:</strong> When there are a few unique values that appear a lot.</li>
+              <li class="fragment"><strong>Dictionary Encoding:</strong> When there are runs of repeated values.</li>
+              <li class="fragment"><strong>Run Length Encoding:</strong> When there's just nothing better.</li>
+              <li class="fragment"><strong>Delta Encoding:</strong> When there are large numbers that are sorted and increasing slowly.</li>
+            </ol>
           </section>
 
         </section>
-
-
 
         <section data-background-color="#293c47" style="text-align: left">
           <div style="margin-bottom: 1em">
