@@ -18,9 +18,9 @@ df = table.to_pandas()
 
 df.shape
 
+df.head()
+
 df.to_csv("data/yellow_tripdata_2025-05.csv", index=False)
-
-
 
 
 
