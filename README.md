@@ -20,3 +20,4 @@ Posts and associated code:
 |[YAML vs JSON Config Files](https://kpdata.dev/blog/yaml-vs-json-config-files)|[yaml_vs_json](./yaml_vs_json)|
 |[Python Slicing](https://kpdata.dev/blog/python-slicing)|[python_slicing](./python_slicing)|
 |[Python Function Parameters](https://kpdata.dev/blog/python-function-parameters)|[python_function_parameters](./python_function_parameters)|
+|[What is a Parquet File?](https://kpdata.dev/blog/what-is-a-parquet-file)|[what_is_a_parquet_file](./what_is_a_parquet_file)|

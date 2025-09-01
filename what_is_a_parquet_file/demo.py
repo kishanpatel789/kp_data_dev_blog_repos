@@ -40,7 +40,6 @@ metadata.row_group(0)
 
 metadata.row_group(0).column(0)
 
-
 # %%
 # plain encoding vs dictionary encoding
 import pyarrow as pa
