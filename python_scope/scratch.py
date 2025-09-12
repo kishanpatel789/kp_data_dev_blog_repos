@@ -143,10 +143,10 @@ kollector.series
 
 # %%
 # global
-counter = 0
+counter = 0   # here's a global variable
 
 def update_counter():
-    counter = counter + 1
+    counter = counter + 1  # try updating global variable
 
 update_counter()
 
@@ -154,32 +154,48 @@ update_counter()
 counter = 0
 
 def update_counter():
-    global counter
+    global counter   # tell Python we're talking about the global 'counter'
     counter = counter + 1
 
 update_counter()
-counter
+counter  # check value
 
 # %%
 # nonlocal
 def get_counter():
     count = 0
-    def update_counter():
-        count += 1
-    return update_counter
+    def counter():
+        count = count + 1  # try updating variable from enclosing scope
+    return counter
 
-my_counter = get_counter()
+update_counter = get_counter()
 
-my_counter()
+update_counter()
 
 # %%
 def get_counter():
     count = 0
-    def update_counter():
-        nonlocal count
-        count += 1
-    return update_counter
+    def counter():
+        nonlocal count  # tell Python we want the enclosing 'count'
+        count = count + 1
+    return counter
 
-my_counter = get_counter()
+update_counter = get_counter()
 
-my_counter()
+update_counter()
+
+update_counter.__closure__[0].cell_contents  # check value
+
+# %%
+# masking
+max(4, 7)  # run the built-in max function
+
+def max():  # create your own function
+    print("haha, I'm replacing built-in max function!")
+
+max(4, 7)  # try calling the built-in max function again
+
+del(max)  # delete our custom function
+
+max(4, 7)  # try calling the built-in max function again
+
