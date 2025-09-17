@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Python Scope</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/kpdatadev.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/default.css" />
+
+    <link rel="icon" type="image/svg+xml" href="images/Favicon.svg" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h1>Python Scope</h1>
+          </section>
+
+          <section></section>
+
+          <section data-auto-animate>
+            <pre><code data-trim data-noescape class="language-python-repl">
+>>> x
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+    x
+    ^
+NameError: name 'x' is not defined
+            </code></pre>
+          </section>
+
+          <section>
+            <pre><code data-trim data-noescape class="language-python-repl">
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+    my_counter()
+    ~~~~~~~~~~^^
+  File "<input>", line 4, in update_counter
+    count += 1
+    ^^^^^
+UnboundLocalError: cannot access local variable 'count' where it is not associated with a value
+            </code></pre>
+          </section>
+
+          <section>
+            <h1>Python Scope</h1>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Scope Rules</h2>
+            <img src="images/LEGBThumbnail.jpg" alt="">
+          </section>
+
+        </section>
+
+
+        <section data-background-color="#293c47" style="text-align: left">
+          <div style="margin-bottom: 1em">
+            <p>
+              Ask me questions about:<br />Data engineering,
+              <strong>learning Python</strong>, anything else
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <p>
+              <strong>Kishan Patel</strong><br />
+              <small
+                >Data Engineering Trainer<br />
+                <strong>info@kpdata.dev</strong></small
+              >
+            </p>
+            <img
+              src="images/LightLogo.svg"
+              alt="KP Data Dev logo"
+              style="height: 100px"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        progress: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      }); 
+    </script>
+  </body>
+</html>
