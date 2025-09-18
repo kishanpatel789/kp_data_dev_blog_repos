@@ -53,6 +53,7 @@ def func1():
 
 func1()
 
+# %%
 # closure test
 def get_collector():
     series = []
@@ -94,15 +95,6 @@ class Collector():
         self.series.append(x)
         return len(self.series)
 
-kollector = Collector()
-
-# %%
-kollector.store("thing1")
-kollector.store("thing2")
-kollector.store("thing3")
-
-# %%
-kollector.series
 
 
 # %%
@@ -114,10 +106,6 @@ def update_counter():
 
 update_counter()
 
-# %%
-import dis
-
-dis.dis(update_counter)
 
 # %% 
 # global attempt 2
@@ -131,6 +119,10 @@ update_counter()
 
 counter  # check value
 
+# %%
+import dis
+
+dis.dis(update_counter)
 
 
 # %%

@@ -63,9 +63,75 @@ UnboundLocalError: cannot access local variable 'count' where it is not associat
             <h2>Scope Rules</h2>
             <img src="images/LEGBThumbnail.jpg" alt="">
           </section>
+        </section>
+
+        <section>
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def func1():
+    ...
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def func1():
+    def func2():
+        ...
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def func1():
+    def func2():
+        print(x)
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def func1():
+    def func2():
+        print(x)
+    func2()
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1,3,5|9|" class="language-python">
+x = 0
+def func1():
+    x = 100
+    def func2():
+        x = 200
+        print(x)
+    func2()
+
+func1()
+            </code></pre>
+          </section>
 
         </section>
 
+        <section>
+          <h2>Modifying Scope Rules</h2>
+          <ul>
+            <li>Can't modify objects in <strong>enclosing</strong> scope without the <code>nonlocal</code> statement.</li>
+            <li>Can't modify objects in <strong>global</strong> scope without the <code>global</code> statement.</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <img src="images/LEGBThumbnail.jpg" alt="">
+          </section>
+        </section>
 
         <section data-background-color="#293c47" style="text-align: left">
           <div style="margin-bottom: 1em">
