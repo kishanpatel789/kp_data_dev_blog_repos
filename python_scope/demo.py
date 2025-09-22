@@ -5,6 +5,10 @@ def f1():
 
 f1()
 
+
+
+
+
 # %%
 x  # calling 'x' outside the function!
 
@@ -15,6 +19,13 @@ def f2():
 
 f2()
 
+
+
+
+
+
+
+
 # %% 
 x = "hola"  # define 'x' outside the function
 def f3():
@@ -24,8 +35,24 @@ def f3():
 f3()
 
 
+
+
+
+
+
 # %%
 __builtins__.keys()
+
+
+
+
+
+
+
+
+
+
+
 
 # %%
 # built-ins whoops
@@ -52,6 +79,8 @@ def func1():
     func2()
 
 func1()
+
+
 
 # %%
 # closure test
@@ -97,6 +126,9 @@ class Collector():
 
 
 
+
+
+
 # %%
 # global attempt 1
 counter = 0   # here's a global variable
@@ -105,6 +137,10 @@ def update_counter():
     counter = counter + 1  # try updating global variable
 
 update_counter()
+
+
+
+
 
 
 # %% 
@@ -119,10 +155,21 @@ update_counter()
 
 counter  # check value
 
+
+
+
 # %%
 import dis
 
 dis.dis(update_counter)
+
+
+
+
+
+
+
+
 
 
 # %%
@@ -173,4 +220,5 @@ update_counter = get_counter()
 update_counter()
 
 update_counter.__closure__[0].cell_contents  # check value
+
 
