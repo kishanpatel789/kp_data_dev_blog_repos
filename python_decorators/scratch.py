@@ -86,37 +86,53 @@ def yell(func):
         return f"{result.upper()}!!!"
     return wrapper
 
-@yell
+#@yell
 def cast_spell(spell_name: str) -> str:
+    """Aim wand and emit incantation."""
     print("Raising wand...")
     return spell_name
 
-cast_spell("lumos")
+cast_spell("expecto patronum")
 
 
 # %%
 # decorator to retain metadata
 from functools import wraps
 
-def my_decorator(func):
-    @wraps(func)
+def yell(func):
+    @wraps(func)  # pass the original function to @wraps
     def wrapper(*args, **kwargs):
-        print("Before function call")
         result = func(*args, **kwargs)
-        print("After function call")
-        return result
+        return f"{result.upper()}!!!"
     return wrapper
 
-@my_decorator
-def my_func(name: str, *, age: int) -> int:
-    """Get a helpful message, return age"""
-    print(f"Hello {name}, you are {age} years old")
-    return age
+@yell
+def cast_spell(spell_name: str) -> str:
+    """Aim wand and emit incantation."""
+    print("Raising wand...")
+    return spell_name
 
-my_func
-my_func.__annotations__
-my_func.__doc__
+cast_spell
+cast_spell.__annotations__
+cast_spell.__doc__
 #help(my_func)
+
+# %%
+# decorator to time functions
+def tictoc(func):
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        func(*args, **kwargs)
+        end = time.perf_counter()
+        print(f"Function {func.__name__} ran in {end-start:.3f} seconds")
+    return wrapper
+
+@tictoc
+def run_my_show(thing, *, other):
+    print(f"I received {thing} and {other}")
+
+run_my_show('hello', other=4)
+
 
 # %%
 # parameterized decorator - decorator factory
