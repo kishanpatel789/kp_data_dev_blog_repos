@@ -119,19 +119,45 @@ cast_spell.__doc__
 
 # %%
 # decorator to time functions
+import time
+
 def tictoc(func):
     def wrapper(*args, **kwargs):
-        start = time.perf_counter()
-        func(*args, **kwargs)
-        end = time.perf_counter()
-        print(f"Function {func.__name__} ran in {end-start:.3f} seconds")
+        start = time.perf_counter() # log start time
+        func(*args, **kwargs)       # run original function
+        end = time.perf_counter()   # log end time
+        print(f"Function '{func.__name__}' ran in {end-start:.3f} seconds")
     return wrapper
 
 @tictoc
-def run_my_show(thing, *, other):
-    print(f"I received {thing} and {other}")
+def troublesome_function(name: str):
+    time.sleep(5)
+    print(f"Hey {name}, I'm done working now!")
 
-run_my_show('hello', other=4)
+troublesome_function("Albus")
+
+# %%
+# rate limiter
+import time
+
+def rate_limit(func):
+    last_called = 0
+    def wrapper(*args, **kwargs):
+        nonlocal last_called
+        now = time.time()
+        if now - last_called <= 10:
+            raise Exception("Rate limit exceeded; wait 10 seconds")
+        last_called = now
+        return func(*args, **kwargs)
+    return wrapper
+
+@rate_limit
+def call_api(endpoint: str):
+    print(f"Calling '{endpoint}'...")
+
+call_api("/owl-post/hedwig")
+
+call_api("/owl-post/hedwig") # call again within 10 seconds
 
 
 # %%
@@ -152,28 +178,6 @@ def cast_spell(spell_name: str):
     print(spell_name)
 
 cast_spell("Adam")
-
-# %%
-# rate limiter
-import time
-
-def rate_limit(func):
-    last_called = 0
-    def wrapper(*args, **kwargs):
-        nonlocal last_called
-        threshold = 10 # seconds
-        now = time.time()
-        if now - last_called <= threshold:
-            raise Exception(f"Rate limit exceeded; wait {threshold} seconds")
-        last_called = now
-        return func(*args, **kwargs)
-    return wrapper
-
-@rate_limit
-def say_hello(name: str):
-    print(f"Hello {name}")
-
-say_hello("Adam")
 
 # %% 
 # filter inputs
