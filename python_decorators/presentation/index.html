@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Python Decorators</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/kpdatadev.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/default.css" />
+
+    <link rel="icon" type="image/svg+xml" href="images/Favicon.svg" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h1>Python Decorators</h1>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Decorator Syntax</h2>
+          </section>
+
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1" class="language-python">
+@my_decorator
+def my_func():
+    print("Hello world")
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|4" class="language-python">
+def my_func():
+    print("Hello world")
+
+... my_decorator(my_func)
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="" class="language-python">
+def my_func():
+    print("Hello world")
+
+my_func = my_decorator(my_func)
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="" class="language-python">
+@my_decorator
+def my_func():
+    print("Hello world")
+            </code></pre>
+          </section>
+
+        <section>
+
+
+        <section>
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def func1():
+    ...
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def func1():
+    def func2():
+        ...
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def func1():
+    def func2():
+        print(x)
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
+def func1():
+    def func2():
+        print(x)
+    func2()
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <h2>Nested Functions</h2>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1,3,5|9|" class="language-python">
+x = 0
+def func1():
+    x = 100
+    def func2():
+        x = 200
+        print(x)
+    func2()
+
+func1()
+            </code></pre>
+          </section>
+
+        </section>
+
+        <section>
+          <h2>Modifying Scope Rules</h2>
+          <ul>
+            <li>Can't modify objects in <strong>enclosing</strong> scope without the <code>nonlocal</code> statement.</li>
+            <li>Can't modify objects in <strong>global</strong> scope without the <code>global</code> statement.</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <img src="images/LEGBThumbnail.jpg" alt="">
+          </section>
+        </section>
+
+        <section data-background-color="#293c47" style="text-align: left">
+          <div style="margin-bottom: 1em">
+            <p>
+              Ask me questions about:<br />Data engineering,
+              <strong>learning Python</strong>, anything else
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <p>
+              <strong>Kishan Patel</strong><br />
+              <small
+                >Data Engineering Trainer<br />
+                <strong>info@kpdata.dev</strong></small
+              >
+            </p>
+            <img
+              src="images/LightLogo.svg"
+              alt="KP Data Dev logo"
+              style="height: 100px"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        progress: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      }); 
+    </script>
+  </body>
+</html>

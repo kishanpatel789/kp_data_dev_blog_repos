@@ -1,18 +1,11 @@
 # %%
-import time
-from functools import wraps
+def my_func():
+    print("Hello world")
 
-# %%
-from flask import Flask
+my_func()
 
-app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return "Hello world"
-
-# %%
-# basic decorator without @ syntax
+# basic decorator
 def my_decorator(func):
     def wrapper():
         print("Before function call")
@@ -20,62 +13,22 @@ def my_decorator(func):
         print("After function call")
     return wrapper
 
+@my_decorator
 def my_func():
     print("Hello world")
+
+my_func()
+
+
+
+# %
+# decorator syntax - alt
+my_decorator(my_func)
 
 my_func = my_decorator(my_func)
 
 my_func()
 
-# %%
-# basic decorator that runs func
-def my_decorator(func):
-    def wrapper():
-        print("Before function call")
-        func()
-        print("After function call")
-    return wrapper
-
-
-@my_decorator
-def my_func():
-    print("Hello world")
-
-my_func()
-
-# %%
-# decorator with arguments
-def my_decorator(func):
-    def wrapper(*args, **kwargs):
-        print("Before function call")
-        func(*args, **kwargs)
-        print("After function call")
-    return wrapper
-
-# @my_decorator
-def my_func(name, *, age):
-    print(f"Hello {name}, you are {age} years old")
-
-my_func("Adam", age=30)
-
-my_func
-
-# %%
-# decorator with return value
-def my_decorator(func):
-    def wrapper(*args, **kwargs):
-        print("Before function call")
-        result = func(*args, **kwargs)
-        print("After function call")
-        return result
-    return wrapper
-
-@my_decorator
-def my_func(name, *, age):
-    print(f"Hello {name}, you are {age} years old")
-    return age
-
-my_func("Adam", age=30)
 
 # %%
 # more exciting example
@@ -86,13 +39,26 @@ def yell(func):
         return f"{result.upper()}!!!"
     return wrapper
 
-#@yell
+@yell
 def cast_spell(spell_name: str) -> str:
-    """Aim wand and emit incantation."""
     print("Raising wand...")
     return spell_name
 
 cast_spell("expecto patronum")
+
+@yell
+def purchase_broom(person: str, price: float, tax: float) -> str:
+    """Grab a broom from Diagon Alley"""
+    return f"{person} purchased a broom for {price + tax} galleons" 
+
+purchase_broom("Harry", 4, 0.5)
+
+### lost something
+purchase_broom
+purchase_broom.__doc__
+purchase_broom.__annotations__
+
+
 
 
 # %%
@@ -107,14 +73,13 @@ def yell(func):
     return wrapper
 
 @yell
-def cast_spell(spell_name: str) -> str:
-    """Aim wand and emit incantation."""
-    print("Raising wand...")
-    return spell_name
+def purchase_broom(person: str, price: float, tax: float) -> str:
+    """Grab a broom from Diagon Alley"""
+    return f"{person} purchased a broom for {price + tax} galleons" 
 
-cast_spell
-cast_spell.__annotations__
-cast_spell.__doc__
+purchase_broom
+purchase_broom.__annotations__
+purchase_broom.__doc__
 #help(my_func)
 
 # %%
