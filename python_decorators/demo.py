@@ -21,18 +21,9 @@ my_func()
 
 
 
-# %
-# decorator syntax - alt
-my_decorator(my_func)
-
-my_func = my_decorator(my_func)
-
-my_func()
-
 
 # %%
-# more exciting example
-# take a function returns a string. make the str uppercase and add !
+# example 1 - passing arguments
 def yell(func):
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
@@ -46,6 +37,8 @@ def cast_spell(spell_name: str) -> str:
 
 cast_spell("expecto patronum")
 
+
+
 @yell
 def purchase_broom(person: str, price: float, tax: float) -> str:
     """Grab a broom from Diagon Alley"""
@@ -53,7 +46,10 @@ def purchase_broom(person: str, price: float, tax: float) -> str:
 
 purchase_broom("Harry", 4, 0.5)
 
-### lost something
+
+
+
+# lost something
 purchase_broom
 purchase_broom.__doc__
 purchase_broom.__annotations__
@@ -80,29 +76,38 @@ def purchase_broom(person: str, price: float, tax: float) -> str:
 purchase_broom
 purchase_broom.__annotations__
 purchase_broom.__doc__
-#help(my_func)
+
+
+
 
 # %%
-# decorator to time functions
+# example 2: do work before and after function - time function
 import time
 
 def tictoc(func):
     def wrapper(*args, **kwargs):
         start = time.perf_counter() # log start time
-        func(*args, **kwargs)       # run original function
+        result = func(*args, **kwargs)       # run original function
         end = time.perf_counter()   # log end time
         print(f"Function '{func.__name__}' ran in {end-start:.3f} seconds")
+        return result
     return wrapper
+
+
+
 
 @tictoc
 def troublesome_function(name: str):
-    time.sleep(5)
+    time.sleep(3)
     print(f"Hey {name}, I'm done working now!")
 
 troublesome_function("Albus")
 
+
+
+
 # %%
-# rate limiter
+# example 3: keep track of state - rate limiter
 import time
 
 def rate_limit(func):
@@ -122,42 +127,4 @@ def call_api(endpoint: str):
 
 call_api("/owl-post/hedwig")
 
-call_api("/owl-post/hedwig") # call again within 10 seconds
 
-
-# %%
-# parameterized decorator - decorator factory
-def repeat(num_times: int):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            for _ in range(num_times):
-                result = func(*args, **kwargs)
-            return result
-        return wrapper
-    return decorator
-
-
-@repeat(5)
-def cast_spell(spell_name: str):
-    print(f"{spell_name.upper()}!!!")
-
-cast_spell("expelliarmus")
-
-# %% 
-# filter inputs
-def only_ints(func):
-    def wrapper(*args, **kwargs):
-        list_ints = [arg for arg in args if isinstance(arg, int)]
-        value = func(*list_ints, **kwargs)
-        return value
-    return wrapper
-
-@only_ints
-def my_sum(*args):
-    value = 0
-    for arg in args:
-        value += arg
-    return value
-
-my_sum(10, 15, 'hello')

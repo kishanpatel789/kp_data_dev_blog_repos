@@ -24,7 +24,19 @@
       <div class="slides">
         <section>
           <section>
+            
+          </section>
+
+          <section>
             <h1>Python Decorators</h1>
+          </section>
+
+          <section>
+            <h2 style="text-align: left;">
+              <strong style="color: #c2ae45;">D</strong>on't<br>
+              <strong style="color: #c2ae45;">R</strong>epeat<br>
+              <strong style="color: #c2ae45;">Y</strong>ourself
+            </h2>
           </section>
         </section>
 
@@ -42,7 +54,7 @@ def my_func():
           </section>
 
           <section data-auto-animate>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|4" class="language-python">
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="" class="language-python">
 def my_func():
     print("Hello world")
 
@@ -67,76 +79,138 @@ def my_func():
             </code></pre>
           </section>
 
-        <section>
+        </section>
 
+        <section>
+          <section>
+            <h2>Use Decorators to...</h2>
+            <ul>
+              <li class="fragment">Register functions with a registry </li>
+              <li class="fragment">Measure time performance of functions</li>
+              <li class="fragment">Restrict function calls to users with permissions</li>
+              <li class="fragment">Emit logs each time functions are called</li>
+              <li class="fragment">Filter the inputs and outputs of functions</li>
+              <li class="fragment">Cache the output of a function for reuse</li>
+              <li class="fragment">Limit how often functions can be called</li>
+              <li class="fragment"><span class="fragment strike">Pay your taxes</span></li>
+            </ul>
+          </section>
+        </section>
 
         <section>
+          <section>
+            <h2>Example 3:<br>Keep Track of State</h2>
+          </section>
+
           <section data-auto-animate>
-            <h2>Nested Functions</h2>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
-def func1():
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="" class="language-python">
+def rate_limit():
     ...
             </code></pre>
           </section>
 
           <section data-auto-animate>
-            <h2>Nested Functions</h2>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
-def func1():
-    def func2():
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="" class="language-python">
+def rate_limit(func):
+    def wrapper():
         ...
+    return wrapper
             </code></pre>
           </section>
 
           <section data-auto-animate>
-            <h2>Nested Functions</h2>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
-def func1():
-    def func2():
-        print(x)
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="" class="language-python">
+def rate_limit(func):
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
             </code></pre>
           </section>
 
           <section data-auto-animate>
-            <h2>Nested Functions</h2>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers class="language-python">
-def func1():
-    def func2():
-        print(x)
-    func2()
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|4|5|" class="language-python">
+def rate_limit(func):
+    def wrapper(*args, **kwargs):
+        ...
+        if now - last_called <= 10:
+            raise Exception("Rate limit exceeded. Wait!")
+        return func(*args, **kwargs)
+    return wrapper
             </code></pre>
           </section>
 
           <section data-auto-animate>
-            <h2>Nested Functions</h2>
-            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1,3,5|9|" class="language-python">
-x = 0
-def func1():
-    x = 100
-    def func2():
-        x = 200
-        print(x)
-    func2()
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|1,5" class="language-python">
+import time
 
-func1()
+def rate_limit(func):
+    def wrapper(*args, **kwargs):
+        now = time.time()
+        if now - last_called <= 10:
+            raise Exception("Rate limit exceeded. Wait!")
+        return func(*args, **kwargs)
+    return wrapper
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|5|9|" class="language-python">
+import time
+
+def rate_limit(func):
+    def wrapper(*args, **kwargs):
+        last_called = 0
+        now = time.time()
+        if now - last_called <= 10:
+            raise Exception("Rate limit exceeded. Wait!")
+        last_called = now
+        return func(*args, **kwargs)
+    return wrapper
+            </code></pre>
+          </section>
+
+          <section data-auto-animate>
+            <pre data-id="code-animation"><code data-trim data-noescape data-line-numbers="|4|6,10|" class="language-python">
+import time
+
+def rate_limit(func):
+    last_called = 0
+    def wrapper(*args, **kwargs):
+        nonlocal last_called
+        now = time.time()
+        if now - last_called <= 10:
+            raise Exception("Rate limit exceeded. Wait!")
+        last_called = now
+        return func(*args, **kwargs)
+    return wrapper
             </code></pre>
           </section>
 
         </section>
 
         <section>
-          <h2>Modifying Scope Rules</h2>
-          <ul>
-            <li>Can't modify objects in <strong>enclosing</strong> scope without the <code>nonlocal</code> statement.</li>
-            <li>Can't modify objects in <strong>global</strong> scope without the <code>global</code> statement.</li>
-          </ul>
+          <section data-auto-animate>
+            <h2>A decorator is...</h2>
+            <ul>
+              <li class="fragment">a <strong>function</strong> ...</li>
+              <li class="fragment">that takes another <strong>function</strong> ...</li>
+              <li class="fragment">and returns a <strong>function</strong> ...</li>
+              <li class="fragment">potentially extending it along the way.</li>
+            </ul>
+          </section>
+
+          <section data-auto-animate>
+            <h2>A decorator is...</h2>
+            <ul>
+              <li>a <strong>callable</strong> ...</li>
+              <li>that takes another <strong>callable</strong> ...</li>
+              <li>and returns a <strong>callable</strong> ...</li>
+              <li>potentially extending it along the way.</li>
+            </ul>
+          </section>
+
         </section>
 
-        <section>
-          <section>
-            <img src="images/LEGBThumbnail.jpg" alt="">
-          </section>
-        </section>
 
         <section data-background-color="#293c47" style="text-align: left">
           <div style="margin-bottom: 1em">
