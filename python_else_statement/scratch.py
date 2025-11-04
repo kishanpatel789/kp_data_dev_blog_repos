@@ -21,10 +21,10 @@ else:
 
 # %%
 
-while False:
+while True:
     break
 else:
-    print('else hit') # only called if while statement is never true OR break is not hit
+    print('else hit') # only called if while statement becomes falsey and break is not hit
 
 
 # %%
@@ -34,4 +34,15 @@ while counter < 10:
     print(counter)
 else:
     print('else hit')
+
+
+# %%
+try: 
+    print('try block')
+    # raise ValueError
+    # raise SyntaxError
+except SyntaxError:
+    print('syntaxerror caught')
+else:
+    print('else statement')
 
