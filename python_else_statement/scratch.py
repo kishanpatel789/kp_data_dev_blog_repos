@@ -1,30 +1,71 @@
 # %%
-for thing in []:
-    print(thing)
+for broomstick in ["Nimbus 2000", "Firebolt", "Cleansweep"]:
+    print(broomstick)
 else:
-    print('nothing')
+    print("HIT THE ELSE STATEMENT")
 
 
 # %%
-for thing in ['at', 'least', 'one']:
-    print(thing)
+for broomstick in ["Nimbus 2000", "Firebolt", "Cleansweep"]:
+    print(broomstick)
+    if broomstick == "Firebolt":
+        break
 else:
-    print('nothing')
+    print("HIT THE ELSE STATEMENT")
+
+# %%
+# practical example
+from dataclasses import dataclass
+
+
+@dataclass
+class User:
+    name: str
+    is_admin: bool
+
+
+users = [
+    User(name="Harry", is_admin=False),
+    User(name="Ron", is_admin=False),
+    # User(name="Hermione", is_admin=True),
+]
+
+for user in users:
+    if user.is_admin:
+        print(f"Found one admin: {user}")
+        break
+else:
+    print("No admin user found!")
 
 
 # %%
-for thing in ['at', 'least', 'one']:
-    print(thing)
-    break
-else:
-    print('nothing') # only called if no break statement is present
+# alt to for-else
+users = [
+    User(name="Harry", is_admin=False),
+    User(name="Ron", is_admin=False),
+    # User(name="Hermione", is_admin=True),
+]
+admin_found = False
+
+for user in users:
+    if user.is_admin:
+        print(f"Found one admin: {user}")
+        admin_found = True
+        break
+
+if not admin_found:
+    print("No admin user found!")
+
+
 
 # %%
 
 while True:
     break
 else:
-    print('else hit') # only called if while statement becomes falsey and break is not hit
+    print(
+        "else hit"
+    )  # only called if while statement becomes falsey and break is not hit
 
 
 # %%
@@ -33,16 +74,52 @@ while counter < 10:
     counter += 1
     print(counter)
 else:
-    print('else hit')
+    print("else hit")
+
+# %%
+import time
+
+def connect_to_server():
+    return "fail"
+
+attempts = 0
+
+while attempts < 3:
+    if connect_to_server() == "success":
+        print("Connected to server!")
+        break
+    attempts += 1
+    time.sleep(1)
+else:
+    raise TimeoutError("Failed to connect to server after 3 attempts")
+
+# %%
+import time
+
+def connect_to_server():
+    return "fail"
+
+attempts = 0
+success = False
+
+while attempts < 3:
+    if connect_to_server() == "success":
+        success = True
+        print("Connected to server!")
+        break
+    attempts += 1
+    time.sleep(1)
+
+if not success:
+    raise TimeoutError("Failed to connect to server after 3 attempts")
 
 
 # %%
-try: 
-    print('try block')
+try:
+    print("try block")
     # raise ValueError
     # raise SyntaxError
 except SyntaxError:
-    print('syntaxerror caught')
+    print("syntaxerror caught")
 else:
-    print('else statement')
-
+    print("else statement")
