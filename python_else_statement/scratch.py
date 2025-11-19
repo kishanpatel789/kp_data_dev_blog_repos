@@ -1,12 +1,16 @@
 # %%
-for broomstick in ["Nimbus 2000", "Firebolt", "Cleansweep"]:
+broomsticks = ["Nimbus 2000", "Firebolt", "Comet"]
+
+for broomstick in broomsticks:
     print(broomstick)
 else:
     print("HIT THE ELSE STATEMENT")
 
 
 # %%
-for broomstick in ["Nimbus 2000", "Firebolt", "Cleansweep"]:
+broomsticks = ["Nimbus 2000", "Firebolt", "Comet"]
+
+for broomstick in broomsticks:
     print(broomstick)
     if broomstick == "Firebolt":
         break
@@ -82,14 +86,15 @@ import time
 def connect_to_server():
     return "fail"
 
-attempts = 0
+attempts_made = 0
 
-while attempts < 3:
+while attempts_made < 3:
+    print("Attempting to connect...")
     if connect_to_server() == "success":
         print("Connected to server!")
         break
-    attempts += 1
-    time.sleep(1)
+    attempts_made += 1
+    time.sleep(1) # wait 1 second before trying again
 else:
     raise TimeoutError("Failed to connect to server after 3 attempts")
 
@@ -99,15 +104,16 @@ import time
 def connect_to_server():
     return "fail"
 
-attempts = 0
+attempts_made = 0
 success = False
 
-while attempts < 3:
+while attempts_made < 3:
+    print("Attempting to connect...")
     if connect_to_server() == "success":
         success = True
         print("Connected to server!")
         break
-    attempts += 1
+    attempts_made += 1
     time.sleep(1)
 
 if not success:
