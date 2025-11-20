@@ -89,11 +89,11 @@ def connect_to_server():
 attempts_made = 0
 
 while attempts_made < 3:
-    print("Attempting to connect...")
+    attempts_made += 1
+    print(f"Connecting to server (attempt {attempts_made})...")
     if connect_to_server() == "success":
         print("Connected to server!")
         break
-    attempts_made += 1
     time.sleep(1) # wait 1 second before trying again
 else:
     raise TimeoutError("Failed to connect to server after 3 attempts")
@@ -108,12 +108,12 @@ attempts_made = 0
 success = False
 
 while attempts_made < 3:
-    print("Attempting to connect...")
+    attempts_made += 1
+    print(f"Connecting to server (attempt {attempts_made})...")
     if connect_to_server() == "success":
         success = True
         print("Connected to server!")
         break
-    attempts_made += 1
     time.sleep(1)
 
 if not success:
@@ -121,11 +121,60 @@ if not success:
 
 
 # %%
+print("in try block")
+raise ValueError
+
+# %%
 try:
-    print("try block")
-    # raise ValueError
-    # raise SyntaxError
-except SyntaxError:
-    print("syntaxerror caught")
+    print("in try block")
+except:
+    print("in except block - something went wrong!")
+
+
+# %%
+try:
+    print("in try block")
+    raise ValueError # simulate an exception
+except:
+    print("in except block - something went wrong!")
+
+# %%
+try:
+    print("in try block")
+except ValueError:
+    print("in except block - reached a ValueError")
 else:
-    print("else statement")
+    print("HIT THE ELSE STATEMENT - no ValueError")
+
+# %%
+try:
+    print("in try block")
+    raise ValueError # simulate an exception
+except ValueError:
+    print("in except block - reached a ValueError")
+else:
+    print("HIT THE ELSE STATEMENT - no ValueError")
+
+# %%
+try:
+    with open("file_not_exist.txt", 'r') as f:
+        data = f.read()
+except FileNotFoundError as e:
+    print(e)
+else:
+    print("File has been processed.")
+
+
+# %%
+import sqlite3
+
+conn = sqlite3.connect("test.db")
+
+try:
+    conn.execute("INSERT INTO my_table VALUES (2, 'harry');")
+except sqlite3.OperationalError:
+    conn.rollback()
+else:
+    conn.commit()
+
+conn.close()
