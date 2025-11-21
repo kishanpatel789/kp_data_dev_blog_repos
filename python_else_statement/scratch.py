@@ -171,10 +171,13 @@ import sqlite3
 conn = sqlite3.connect("test.db")
 
 try:
-    conn.execute("INSERT INTO my_table VALUES (2, 'harry');")
-except sqlite3.OperationalError:
+    cur = conn.execute("INSERT INTO my_table VALUES (?, ?)", (1, "harry"))
+except sqlite3.Error as e:
+    print(f"Something went wrong: {e}")
     conn.rollback()
 else:
+    print("Commiting data base changes")
     conn.commit()
+finally:
+    conn.close()
 
-conn.close()
