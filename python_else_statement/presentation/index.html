@@ -76,6 +76,61 @@ else:
 
         </section>
 
+        <section>
+          <section>
+            <h2>1. The "if" Statement</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>2. The "for" Loop</h2>
+          </section>
+
+          <section>
+            <div>
+              <h6>For-Else Approach</h6>
+              <pre><code class="language-python" data-trim data-line-numbers>
+for user in users:
+    if user.is_admin:
+        print(f"Found one admin: {user}")
+        break
+else:
+    print("No admin user found!")
+              </code></pre>
+            </div>
+
+            <div class="fragment">
+              <h6>Boolean Flag Approach</h6>
+              <pre><code class="language-python" data-trim data-line-numbers>
+admin_found = False # flag to store success or failure
+
+for user in users:
+    if user.is_admin:
+        print(f"Found one admin: {user}")
+        admin_found = True  # update flag 
+        break
+
+if not admin_found:
+    print("No admin user found!")
+              </code></pre>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>3. The "while" Loop</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>4. The "try-except" Block</h2>
+          </section>
+        </section>
+
+
 
 
         <section data-background-color="#293c47" style="text-align: left">

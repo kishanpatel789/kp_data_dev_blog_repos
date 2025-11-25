@@ -68,7 +68,7 @@ if not admin_found:
 import time
 
 def connect_to_server():
-    return "fail"
+    return "fail" # doomed to fail...
 
 attempts_made = 0
 
