@@ -88,14 +88,21 @@ else:
 # the try-except block
 try:
     print("in try block")
-    # raise ValueError # simulate an exception
-    raise SyntaxError
+    raise ValueError
 except ValueError:
     print("in except block - reached a ValueError")
+
+
+
+
+
+
 
 # %%
 try:
     print("in try block")
+    # raise ValueError
+    raise SyntaxError
 except ValueError:
     print("in except block - reached a ValueError")
 else:
@@ -115,7 +122,7 @@ except sqlite3.Error as e:
     print(f"Something went wrong: {e}")
     conn.rollback()
 else:
-    print("Commiting data base changes")
+    print("Committing data base changes")
     conn.commit()
 finally:
     conn.close()

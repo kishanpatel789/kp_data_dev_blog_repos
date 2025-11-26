@@ -18,6 +18,17 @@
 
     <link rel="icon" type="image/svg+xml" href="images/Favicon.svg" />
 
+    <style>
+section table {
+  font-size: 0.7em;
+  margin: 0 auto; 
+}
+
+section table td, section table th {
+  padding: 0.3em 0.6em;
+}
+    </style>
+
   </head>
   <body>
     <div class="reveal">
@@ -122,11 +133,35 @@ if not admin_found:
           <section>
             <h2>3. The "while" Loop</h2>
           </section>
+
+          <section>
+            <h3>Use Cases for <code>while-else</code></h3>
+            <ul>
+              <li class="fragment">Wait on a background job to complete</li>
+              <li class="fragment">Wait on a network resource to be available</li>
+              <li class="fragment">Retry API calls a limited number of times</li>
+            </ul>
+          </section>
         </section>
 
         <section>
           <section>
             <h2>4. The "try-except" Block</h2>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+### The `else` Statement
+
+| Control Flow              | When `else` Runs                       | 
+| ------------------------- | --------------------------             | 
+| `if ... else`             | Condition in `if` statement is `False` | 
+| `for ... else`            | Loop completes without `break`         | 
+| `while ... else`          | Loop ends without `break`              | 
+| `try ... else`            | `try` clause does not raise exception  | 
+            </textarea>
           </section>
         </section>
 
