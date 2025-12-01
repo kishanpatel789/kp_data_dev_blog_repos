@@ -14,6 +14,7 @@ broomsticks = ["Nimbus 2000", "Firebolt", "Comet"]
 
 for broomstick in broomsticks:
     print(broomstick)
+
 # else:
     # print("HIT THE ELSE STATEMENT")
 
@@ -88,7 +89,6 @@ else:
 # the try-except block
 try:
     print("in try block")
-    raise ValueError
 except ValueError:
     print("in except block - reached a ValueError")
 
@@ -101,8 +101,7 @@ except ValueError:
 # %%
 try:
     print("in try block")
-    # raise ValueError
-    raise SyntaxError
+    raise ValueError
 except ValueError:
     print("in except block - reached a ValueError")
 else:
