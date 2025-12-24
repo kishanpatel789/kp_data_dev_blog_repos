@@ -1,11 +1,16 @@
 # %%
 # the if statement
-broomstick = "Firebolt"
+broomstick = "Comet"
 
 if broomstick == "Firebolt":
     print("It's the fastest broom in the world! 🧹")
 else:
     print("It's good enough.")
+
+
+
+
+
 
 
 # %%
@@ -14,9 +19,15 @@ broomsticks = ["Nimbus 2000", "Firebolt", "Comet"]
 
 for broomstick in broomsticks:
     print(broomstick)
+    if broomstick == "Firebolt":
+        break
+else:
+    print("HIT THE ELSE STATEMENT")
 
-# else:
-    # print("HIT THE ELSE STATEMENT")
+
+
+
+
 
 
 
@@ -32,7 +43,7 @@ class User:
 users = [
     User(name="Harry", is_admin=False),
     User(name="Ron", is_admin=False),
-    User(name="Hermione", is_admin=True),
+    # User(name="Hermione", is_admin=True),
 ]
 
 for user in users:
@@ -41,6 +52,8 @@ for user in users:
         break
 else:
     print("No admin user found!")
+
+
 
 
 # %%
@@ -69,7 +82,7 @@ if not admin_found:
 import time
 
 def connect_to_server():
-    return "fail" # doomed to fail...
+    return "success" # doomed to fail...
 
 attempts_made = 0
 
@@ -85,27 +98,37 @@ else:
 
 
 
+
+
 # %%
 # the try-except block
-try:
-    print("in try block")
-except ValueError:
-    print("in except block - reached a ValueError")
-
-
-
-
-
-
-
-# %%
 try:
     print("in try block")
     raise ValueError
 except ValueError:
     print("in except block - reached a ValueError")
+
+
+
+
+
+
+
+
+
+# %%
+try:
+    print("in try block")
+    raise SyntaxError
+except ValueError:
+    print("in except block - reached a ValueError")
 else:
     print("HIT THE ELSE STATEMENT - no ValueError")
+
+
+
+
+
 
 
 
@@ -121,7 +144,7 @@ except sqlite3.Error as e:
     print(f"Something went wrong: {e}")
     conn.rollback()
 else:
-    print("Committing data base changes")
+    print("Committing database changes")
     conn.commit()
 finally:
     conn.close()

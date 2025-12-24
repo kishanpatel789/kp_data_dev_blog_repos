@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Slowly Changing Dimensions</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/kpdatadev.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/default.css" />
+
+    <link rel="icon" type="image/svg+xml" href="images/Favicon.svg" />
+
+    <style>
+section table {
+  font-size: 0.7em;
+  margin: 0 auto; 
+}
+
+section table td, section table th {
+  padding: 0.3em 0.6em;
+}
+    </style>
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section></section>
+            
+          <section>
+            <h1 style="text-align: left;">
+              <strong style="color: #c2ae45;">S</strong>lowly<br>
+              <strong style="color: #c2ae45;">C</strong>hanging<br>
+              <strong style="color: #c2ae45;">D</strong>imensions
+            </h1>
+          </section>
+
+          <section>
+
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>first_name</th>
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P001</td>
+<td>Harry</td>
+<td class="highlight-cell">12 Grimmauld Place</td>
+</tr>
+<tr>
+<td>P002</td>
+<td>Ron</td>
+<td>The Burrow</td>
+</tr>
+<tr>
+<td>P003</td>
+<td>Hermione</td>
+<td>34 Tennyson Road</td>
+</tr>
+</tbody>
+</table>
+          </section>
+
+
+          <section data-markdown>
+            <textarea data-template>
+              <div class="">
+| id     | patient_id | encounter_date | diagnosis_code | diagnosis_desc                | treatment_code | treatment_desc             | total_cost |
+| ---    | ---        | ---            | ---            | ---                           | ---            | ---                        | --:        |
+| E10001 | P001       | 1997-05-15     | SM-101         | Basilisk Venom Exposure       | SP-17          | Essence of Phoenix Feather | 1200       |
+| E10002 | P001       | 1996-02-12     | SM-205         | Broken Wand Backfire Injury   | SP-03          | Wand-Core Realignment      | 300        |
+| E10003 | P002       | 1995-07-21     | SM-330         | Quidditch Bludger Head Trauma | SP-21          | Cranial Healing Charm      | 450        |
+              </div>
+
+            </textarea>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h2>1. The "if" Statement</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>2. The "for" Loop</h2>
+          </section>
+
+          <section>
+            <div>
+              <h6>For-Else Approach</h6>
+              <pre><code class="language-python" data-trim data-line-numbers>
+for user in users:
+    if user.is_admin:
+        print(f"Found one admin: {user}")
+        break
+else:
+    print("No admin user found!")
+              </code></pre>
+            </div>
+
+            <div class="fragment">
+              <h6>Boolean Flag Approach</h6>
+              <pre><code class="language-python" data-trim data-line-numbers>
+admin_found = False # flag to store success or failure
+
+for user in users:
+    if user.is_admin:
+        print(f"Found one admin: {user}")
+        admin_found = True  # update flag 
+        break
+
+if not admin_found:
+    print("No admin user found!")
+              </code></pre>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>3. The "while" Loop</h2>
+          </section>
+
+          <section>
+            <h3>Use Cases for <code>while-else</code></h3>
+            <ul>
+              <li class="fragment">Wait on a background job to complete</li>
+              <li class="fragment">Wait on a network resource to be available</li>
+              <li class="fragment">Retry API calls a limited number of times</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>4. The "try-except" Block</h2>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+### The `else` Statement
+
+| Control Flow              | When `else` Runs                       | 
+| ------------------------- | --------------------------             | 
+| `if ... else`             | Condition in `if` statement is `False` | 
+| `for ... else`            | Loop completes without `break`         | 
+| `while ... else`          | Loop ends without `break`              | 
+| `try ... else`            | `try` clause does not raise exception  | 
+
+<ul style="margin-top: 1em; font-size: 0.7em;">
+  <li class="fragment">In general, <code>else</code> is skipped if Python finds an Exception or <code>break</code>/<code>return</code>/<code>continue</code>.</li>
+  <li class="fragment"><code class="fragment strike">else</code> <span class="fragment">"then" or "nobreak"?</span></li>
+</ul>
+            </textarea>
+          </section>
+        </section>
+
+
+
+
+        <section data-background-color="#293c47" style="text-align: left">
+          <div style="margin-bottom: 1em">
+            <p>
+              Ask me questions about:<br />Data engineering,
+              <strong>learning Python</strong>, anything else
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <p>
+              <strong>Kishan Patel</strong><br />
+              <small
+                >Data Engineering Trainer<br />
+                <strong>info@kpdata.dev</strong></small
+              >
+            </p>
+            <img
+              src="images/LightLogo.svg"
+              alt="KP Data Dev logo"
+              style="height: 100px"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        progress: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      }); 
+    </script>
+  </body>
+</html>
