@@ -416,10 +416,179 @@ JOIN dim_patient p
             <h2>SCD Type 3</h2>
           </section>
 
+          <section>
+            <div
+                style="display: flex; flex-direction: column; justify-content: space-between; gap: 2rem;"
+                >
+                <div style="flex: 1">
+                  <h6>Before</h6>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>id</th>
+                        <th>first_name</th>
+                        <th>address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>P001</td>
+                        <td>Harry</td>
+                        <td>4 Privet Drive</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+
+
+                <div style="flex: 1" class="fragment">
+                  <h6>After</h6>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>id</th>
+                        <th>first_name</th>
+                        <th class="highlight-cell">original_address</th>
+                        <th class="highlight-cell">current_address</th>
+                        <th class="highlight-cell">effective_date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>P001</td>
+                        <td>Harry</td>
+                        <td>4 Privet Drive</td>
+                        <td class="highlight-cell">12 Grimmauld Place</td>
+                        <td class="highlight-cell">1996-07-01</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+            </div>
+          </section>
+
 
         </section>
 
 
+        <section>
+          <section>
+            <h2>SCD Type 4</h2>
+          </section>
+
+          <section>
+            <h6>Before</h6>
+            <div
+                style="display: flex; flex-direction: column; justify-content: space-between; gap: 2rem;"
+                >
+                <div style="flex: 1">
+                  <code style="font-size: 0.6em;">dim_patient</code>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>id</th>
+                        <th>first_name</th>
+                        <th>address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>P001</td>
+                        <td>Harry</td>
+                        <td>4 Privet Drive</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+
+
+                <div style="flex: 1" class="fragment">
+                  <code style="font-size: 0.6em;">dim_patient_hist</code>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>id</th>
+                        <th>first_name</th>
+                        <th>address</th>
+                        <th>effective_date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>P001</td>
+                        <td>Harry</td>
+                        <td>4 Privet Drive</td>
+                        <td>1981-10-31</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </section>
+
+
+          <section>
+            <h6>After</h6>
+            <div
+                style="display: flex; flex-direction: column; justify-content: space-between; gap: 2rem;"
+                >
+                <div style="flex: 1">
+                  <code style="font-size: 0.6em;">dim_patient</code>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>id</th>
+                        <th>first_name</th>
+                        <th>address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>P001</td>
+                        <td>Harry</td>
+                        <td class="highlight-cell">12 Grimmauld Place</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+
+
+                <div style="flex: 1">
+                  <code style="font-size: 0.6em;">dim_patient_hist</code>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>id</th>
+                        <th>first_name</th>
+                        <th>address</th>
+                        <th>effective_date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>P001</td>
+                        <td>Harry</td>
+                        <td>4 Privet Drive</td>
+                        <td>1981-10-31</td>
+                      </tr>
+                      <tr class="highlight-cell">
+                        <td>P001</td>
+                        <td>Harry</td>
+                        <td>12 Grimmauld Place</td>
+                        <td>1996-07-01</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </section>
+
+
+        </section>
 
         <section>
           <h3>Slowly Changing Dimensions</h3>
