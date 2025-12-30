@@ -51,7 +51,71 @@ section table td, section table th {
       <div class="slides">
         <section>
           <section></section>
-            
+
+
+          <section>
+            <h5><code>state_regions</code></h5>
+
+            <div
+                style="display: flex; flex-direction: row; justify-content: space-between; gap: 1rem;"
+                >
+                <div style="flex: 1">
+                  <h6>Before</h6>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>state</th>
+                        <th>region</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>California</td>
+                        <td>Pacific</td>
+                      </tr>
+                      <tr>
+                        <td>New York</td>
+                        <td>Northeast</td>
+                      </tr>
+                      <tr>
+                        <td>Maine</td>
+                        <td>Northeast</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+
+
+                <div style="flex: 1" class="fragment">
+                  <h6>After</h6>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>state</th>
+                        <th>region</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>California</td>
+                        <td>Pacific</td>
+                      </tr>
+                      <tr>
+                        <td>New York</td>
+                        <td class="highlight-cell">Atlantic</td>
+                      </tr>
+                      <tr>
+                        <td>Maine</td>
+                        <td>Northeast</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+            </div>
+          </section>
+
           <section>
             <h1 style="text-align: left;">
               <strong style="color: #c2ae45;">S</strong>lowly<br>
@@ -60,6 +124,12 @@ section table td, section table th {
             </h1>
           </section>
 
+        </section>
+
+        <section>
+          <section>
+            <h2>Kimball Data Model</h2>
+          </section>
 
           <section>
             <code>fct_encounter</code>
