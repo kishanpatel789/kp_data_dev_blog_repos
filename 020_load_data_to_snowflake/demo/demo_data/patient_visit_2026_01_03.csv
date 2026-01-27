@@ -1,0 +1,6 @@
+visit_id,patient_id,visit_date,department,visit_cost,is_emergency,insurance_provider
+V1011,P010,2026-01-03,Cardiology,500.00,false,Gretna
+V1012,P011,2026-01-03,Oncology,not_available,true,GreenCross
+V1013,P012,2026-01-03,Emergency,750.25,yes,Divided
+V1014,P013,2026-13-14,Pediatrics,300.00,false,Digna
+V1015,P014,2026-01-03,,450.00,false,

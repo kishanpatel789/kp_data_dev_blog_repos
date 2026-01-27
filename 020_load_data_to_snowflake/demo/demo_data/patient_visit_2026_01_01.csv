@@ -1,0 +1,6 @@
+visit_id,patient_id,visit_date,department,visit_cost,is_emergency
+V1001,P001,2026-01-01,Cardiology,450.75,false
+V1002,P002,2026-01-01,Neurology,1200.00,true
+V1003,P003,2026-01-01,Pediatrics,200.00,false
+V1004,P004,2026-01-01,Orthopedics,875.50,false
+V1005,P005,2026-01-01,Oncology,1500.00,true
