@@ -15,4 +15,4 @@ scratch.txt
 *.swp
 data/
 node_modules/
-021_how_to_find_files_linux/demo/Videos/
+#021_how_to_find_files_linux/demo/Videos/
