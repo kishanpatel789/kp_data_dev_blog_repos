@@ -1,0 +1,9 @@
+repos:
+  - repo: https://github.com/tconbeer/sqlfmt
+    rev: v0.29.0
+    hooks:
+      - id: sqlfmt
+        language_version: python
+        additional_dependencies: ['.[jinjafmt]']
+        files: ^022_format_sql_code_for_dbt/
+
