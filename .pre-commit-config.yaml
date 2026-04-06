@@ -5,5 +5,5 @@ repos:
       - id: sqlfmt
         language_version: python
         additional_dependencies: ['.[jinjafmt]']
-        files: ^022_format_sql_code_for_dbt/
+        files: ^022_format_sql_code_for_dbt/demo/
 

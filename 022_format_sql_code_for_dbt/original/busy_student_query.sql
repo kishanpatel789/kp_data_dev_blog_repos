@@ -1,0 +1,1 @@
+with busy_students as(select s.id,s.name,count(e.class_id) as class_count from students s join enrollments e on s.id=e.student_id group by s.id,s.name having count(e.class_id)>3)select * from busy_students where name like '%Granger%';
