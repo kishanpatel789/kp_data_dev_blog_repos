@@ -1,0 +1,7 @@
+sources:
+  - name: core
+    database: demo
+    schema: core
+
+    tables:
+      - name: students

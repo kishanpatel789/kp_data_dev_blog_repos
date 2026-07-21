@@ -1,4 +1,5 @@
 # %%
+
 use database demo;
 use schema core;
 
@@ -6,18 +7,44 @@ alter warehouse compute_wh resume;
 
 alter warehouse compute_wh suspend;
 
-create
-or replace table students (
-id number not null,
-name string not null,
-year number not null,
-house string not null,
-last_updated timestamp not null
+# %%
+
+-- reset state
+create or replace table students (
+  id           number not null,
+  name         string not null,
+  house        string not null,
+  last_updated timestamp not null
 );
 
-select * from demo.core.students;
+delete from students;
 
-select * from demo.core.my_first_dbt_model;
+insert into students values
+(1, 'Harry', 'Gryffindor', current_timestamp()),
+(2, 'Draco', 'Slytherin', current_timestamp());
+
+# %%
+
+-- new record
+insert into students values
+(3, 'Hermione', 'Gryffindor', current_timestamp());
 
 
-show tables in schema demo.core;
+# %%
+
+-- modify record
+update students
+set name = 'hARRy', last_updated = current_timestamp()
+where id = 1;
+
+# %%
+
+-- delete record
+delete from students
+where id = 2;
+
+select * from students;
+
+# %%
+
+-- show tables in schema demo.core;
