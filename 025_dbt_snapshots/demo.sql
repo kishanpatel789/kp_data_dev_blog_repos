@@ -3,10 +3,6 @@
 use database demo;
 use schema core;
 
-alter warehouse compute_wh resume;
-
-alter warehouse compute_wh suspend;
-
 # %%
 
 -- reset state
@@ -17,11 +13,33 @@ create or replace table students (
   last_updated timestamp not null
 );
 
-delete from students;
-
 insert into students values
 (1, 'Harry', 'Gryffindor', current_timestamp()),
 (2, 'Draco', 'Slytherin', current_timestamp());
+
+select * from demo.core.students;
+
+
+
+
+
+
+
+
+# %%
+
+-- check source and snapshot
+select * from demo.core.students;
+select * from demo.snapshot.students_snapshot
+order by id, dbt_valid_from;
+
+
+
+
+
+
+
+
 
 # %%
 
@@ -43,8 +61,12 @@ where id = 1;
 delete from students
 where id = 2;
 
-select * from students;
 
 # %%
 
--- show tables in schema demo.core;
+# %%
+
+-- clean up
+drop table if exists demo.core.students;
+drop table if exists demo.snapshot.students_snapshot;
+drop schema if exists demo.snapshot;
