@@ -52,7 +52,7 @@ insert into students values
 
 -- modify record
 update students
-set name = 'hARRy', last_updated = current_timestamp()
+set name = 'HARRY', last_updated = current_timestamp()
 where id = 1;
 
 # %%
