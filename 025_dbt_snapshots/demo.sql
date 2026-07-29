@@ -5,7 +5,6 @@ use schema core;
 
 # %%
 
--- reset state
 create or replace table students (
   id           number not null,
   name         string not null,
@@ -48,12 +47,21 @@ insert into students values
 (3, 'Hermione', 'Gryffindor', current_timestamp());
 
 
+
+
+
+
+
 # %%
 
 -- modify record
 update students
 set name = 'HARRY', last_updated = current_timestamp()
 where id = 1;
+
+
+
+
 
 # %%
 
@@ -62,7 +70,14 @@ delete from students
 where id = 2;
 
 
-# %%
+
+
+
+
+
+
+
+
 
 # %%
 
