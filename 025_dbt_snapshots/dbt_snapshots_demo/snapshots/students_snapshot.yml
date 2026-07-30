@@ -4,6 +4,6 @@ snapshots:
     config:
       database: demo
       schema: snapshot
-      strategy: timestamp
       unique_key: id
+      strategy: timestamp
       updated_at: last_updated
