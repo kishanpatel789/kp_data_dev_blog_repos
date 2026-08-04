@@ -1,5 +1,7 @@
 # %%
 
+alter warehouse compute_wh resume;
+
 use database demo;
 use schema core;
 
