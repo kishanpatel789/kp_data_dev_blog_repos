@@ -1,0 +1,25 @@
+# Server Configuration
+# Version 2.1
+
+server_name = "web-01"
+port = 9090
+max_connections = 300
+timeout = 30
+retry_attempts = 5
+
+# Logging settings
+log_level = "info"
+log_file = "/var/log/app.log"
+log_rotation = "daily"
+
+# Database settings
+db_host = "db.internal.hogwarts.edu"
+db_port = 5432
+db_name = "production"
+
+# Feature flags
+enable_cache = true
+enable_metrics = true
+
+# Admin users
+admins = ["mcgonagall", "snape"]
