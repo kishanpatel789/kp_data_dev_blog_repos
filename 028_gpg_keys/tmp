@@ -1,0 +1,22 @@
+
+
+
+   public key
+
+   private key
+
+
+
+   Harry  --->   Ginny
+
+
+         Ron
+
+
+
+  data -> hash
+  hash + privatekey -> signature
+
+
+  signature + data + public key = verification
+
