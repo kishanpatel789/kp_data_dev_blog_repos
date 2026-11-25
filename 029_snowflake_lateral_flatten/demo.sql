@@ -62,21 +62,41 @@ select * from houses;
 
 # %%
 
+create or replace table students_nested (
+  id           number not null,
+  name         string not null,
+  courses      array
+);
+
+insert into students_nested (id, name, courses)
+select
+  1,
+  'Harry Potter',
+  parse_json('[{"name": "Defense Against the Dark Arts", "assignments": ["Read chapter on Boggarts", "Write essay on werewolves"]},
+    {"name": "Potions", "assignments": ["Write essay on moonstone use in potion-making"]}]')
+union
+select
+  2,
+  'Hermione Granger',
+  parse_json('[{"name": "Arithmancy", "assignments": ["Update number chart", "Read textbook chapter 9"]}]')
+;
+
+select * from students_nested;
+
+
+
+
+# %%
+
 -- extract course
 select s.id, s.name, c.value::string as course
 from students as s,
-lateral flatten(input => s.courses) as c;
-
--- extract wand wood
-select s.id, s.name, w.value::string as wand_wood
-from students as s,
-lateral flatten(input => s.wand) as w
-where w.key = 'wood';
+lateral flatten(s.courses) as c;
 
 -- extract wand characteristics
 select s.id, s.name, w.key, w.value::string as value
 from students as s,
-lateral flatten(input => s.wand) as w;
+lateral flatten(s.wand) as w;
 
 
 select s.id, s.name, s.wand:wood::string as wand_wood
@@ -109,3 +129,23 @@ from students s, lateral(select * from houses h where h.id = s.house_id) h2;
 
 select s.id, s.name, h.*
 from students s inner join houses h where h.id = s.house_id;
+
+
+# %%
+-- advanced: lateral chains
+
+select * from students_nested;
+
+
+select id, name, f1.value as course
+from students_nested s,
+lateral flatten(s.courses) f1;
+
+select id, name, f1.value:name::string as course, f1.value:assignments as assignment
+from students_nested s,
+lateral flatten(s.courses) f1;
+
+select id, name, f1.value:name::string course, f2.value::string assignment
+from students_nested s,
+lateral flatten(s.courses) f1,
+lateral flatten(f1.value:assignments) f2;
