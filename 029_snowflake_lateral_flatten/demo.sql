@@ -88,10 +88,31 @@ select * from students_nested;
 
 # %%
 
--- extract course
+-- show table
+select id, name, wand, courses from students;
+
+
+
+
+
+
+
+
+
+
+-- expand course
 select s.id, s.name, c.value::string as course
 from students as s,
 lateral flatten(s.courses) as c;
+
+
+
+
+
+
+
+
+
 
 -- extract wand characteristics
 select s.id, s.name, w.key, w.value::string as value
@@ -99,8 +120,14 @@ from students as s,
 lateral flatten(s.wand) as w;
 
 
-select s.id, s.name, s.wand:wood::string as wand_wood
-from students as s;
+
+
+
+
+
+
+
+
 
 # %%
 -- flatten only
@@ -121,14 +148,35 @@ from table(
 
 select id, name, house_id from students;
 
-select * from houses; 
+select * from houses;
 
 select s.id, s.name, h2.*
-from students s, lateral(select * from houses h where h.id = s.house_id) h2;
+from students as s,
+lateral(select * from houses h where h.id = s.house_id) as h2;
+
+
+
 
 
 select s.id, s.name, h.*
 from students s inner join houses h where h.id = s.house_id;
+
+
+
+
+
+# %%
+-- back to lateral flatten
+
+select s.id, s.name, c.value::string as course
+from students as s,
+lateral flatten(s.courses) as c;
+
+
+
+
+
+
 
 
 # %%
@@ -137,6 +185,27 @@ from students s inner join houses h where h.id = s.house_id;
 select * from students_nested;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- scratch
 select id, name, f1.value as course
 from students_nested s,
 lateral flatten(s.courses) f1;
